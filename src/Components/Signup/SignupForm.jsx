@@ -27,6 +27,7 @@ function SignupForm(props) {
       name: (value) => value.length > 2,
       password: (value) => value.length > 8,
       confirmPassword: (value) => value === form.values.password,
+      designation: (value) => value.length >= 2,
       mobileNumber: (value) =>
         /^\(?(\d{3})\)?[- ]?(\d{3})[- ]?(\d{4})$/.test(value),
     },
@@ -45,7 +46,28 @@ function SignupForm(props) {
   };
 
   const nextHandler = () => {
-    props.nextStep();
+    // if (
+    //   props.stepperPos === 0 &&
+    //   !form.validateField("name") &&
+    //   !form.validateField("email")
+    // ) {
+    //   return;
+    // } else if (
+    //   props.stepperPos === 1 &&
+    //   !form.validateField("password") &&
+    //   !form.validateField("confirmPassword")
+    // ) {
+    //   return;
+    // } else if (
+    //   props.stepperPos === 2 &&
+    //   !form.validateField("designation") &&
+    //   !form.validateField("mobileNumber")
+    // ) {
+    //   return;
+    // }
+    // props.nextStep();
+
+
     // let validated = true;
     // formParts[props.stepperPos].forEach((field) => {
     //   form.validateField(field);
