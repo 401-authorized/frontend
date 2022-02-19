@@ -12,7 +12,12 @@ function SIgnupLayout() {
     setStepperActive((current) => (current > 0 ? current - 1 : current));
   const matches = useMediaQuery("(min-width: 1000px)");
   return (
-    <div style={{ height: "calc(100vh - 80px)", minHeight: "500px" }}>
+    <div
+      style={{
+        height: "calc(100vh - 80px)",
+        minHeight: "500px",
+      }}
+    >
       <Grid style={{ height: "100%", width: "100%" }}>
         <Grid.Col
           md={6}
@@ -30,6 +35,7 @@ function SIgnupLayout() {
               nextStep={nextStep}
               prevStep={prevStep}
               stepperPos={stepperActive}
+              setStepperPos={setStepperActive}
             />
           </div>
         </Grid.Col>

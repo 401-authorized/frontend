@@ -3,7 +3,13 @@ import React from "react";
 
 function HeaderLayout(props) {
   return (
-    <Header height={70} padding="md">
+    <Header
+      height={70}
+      padding="lg"
+      sx={(theme) => ({
+        backgroundColor: theme.colors.blue,
+      })}
+    >
       {/* Handle other responsive styles with MediaQuery component or createStyles function */}
       <div
         style={{
@@ -15,11 +21,11 @@ function HeaderLayout(props) {
       >
         {props.mediaQuery ? props.mediaQuery : null}
 
-        <Title order={2} style={{ color: "#2873AC" }}>
+        <Title order={2} style={{ color: "white" }}>
           <span style={{ fontFamily: "Montserrat" }}>CDC</span>
           <span style={{ fontFamily: "mono" }}> Portal</span>
         </Title>
-        <Button variant="filled" color="#1A609F">
+        <Button variant="outline" style={{ color: "white" }}>
           Visit Site
         </Button>
       </div>

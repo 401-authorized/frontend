@@ -1,4 +1,4 @@
-import { Checkbox, InputWrapper, TextInput } from "@mantine/core";
+import { Checkbox, InputWrapper, Space, TextInput } from "@mantine/core";
 import React from "react";
 
 function SignupFormPart3({ form, fieldBlurHandler }) {
@@ -11,6 +11,7 @@ function SignupFormPart3({ form, fieldBlurHandler }) {
           onBlur={(event) => fieldBlurHandler(event, "designation")}
         />
       </InputWrapper>
+      <Space h="md" />
       <InputWrapper required label="Mobile Number">
         <TextInput
           placeholder="9876543210"

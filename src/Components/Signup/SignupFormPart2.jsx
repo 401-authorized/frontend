@@ -1,5 +1,5 @@
 import React from "react";
-import { InputWrapper, PasswordInput } from "@mantine/core";
+import { InputWrapper, PasswordInput, Space } from "@mantine/core";
 
 function SignupFormPart2({ form, fieldBlurHandler }) {
   return (
@@ -11,6 +11,7 @@ function SignupFormPart2({ form, fieldBlurHandler }) {
           onBlur={(event) => fieldBlurHandler(event, "password")}
         />
       </InputWrapper>
+      <Space h="md" />
       <InputWrapper required label="Confirm Password">
         <PasswordInput
           {...form.getInputProps("confirmPassword")}
