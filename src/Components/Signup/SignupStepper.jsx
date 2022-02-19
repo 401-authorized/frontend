@@ -17,17 +17,17 @@ function SignupStepper(props) {
       >
         <Stepper.Step
           label="Fist step"
-          description="Create an account"
+          description="Provide name and email"
           allowStepSelect={props.active > 0}
         ></Stepper.Step>
         <Stepper.Step
           label="Second step"
-          description="Verify email"
+          description="Create a secure password"
           allowStepSelect={props.active > 1}
         ></Stepper.Step>
         <Stepper.Step
           label="Final step"
-          description="Get full access"
+          description="Some additional details"
           allowStepSelect={props.active > 2}
         ></Stepper.Step>
         <Stepper.Completed></Stepper.Completed>

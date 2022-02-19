@@ -1,4 +1,4 @@
-import { InputWrapper, TextInput } from "@mantine/core";
+import { InputWrapper, Space, TextInput } from "@mantine/core";
 import React from "react";
 
 function SignupFormPart1({ form, fieldBlurHandler }) {
@@ -11,6 +11,7 @@ function SignupFormPart1({ form, fieldBlurHandler }) {
           onBlur={(event) => fieldBlurHandler(event, "name")}
         />
       </InputWrapper>
+      <Space h="md" />
       <InputWrapper required label="Email">
         <TextInput
           placeholder="your@email.com"

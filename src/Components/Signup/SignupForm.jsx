@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import { Button, Group, Text, Center, Paper } from "@mantine/core";
+import React, { useState } from "react";
+import { Button, Group, Text, LoadingOverlay, Paper } from "@mantine/core";
 import { useForm } from "@mantine/hooks";
 import SignupFormPart1 from "./SignupFormPart1";
 import SignupFormPart2 from "./SignupFormPart2";
@@ -11,6 +11,8 @@ function SignupForm(props) {
     ["password", "confirmPassword"],
     ["designation", "mobileNumber"],
   ];
+
+  const [loading, setLoading] = useState(false);
   const form = useForm({
     initialValues: {
       email: "",
@@ -40,33 +42,53 @@ function SignupForm(props) {
     },
   });
 
+  const nextButtonHandler = () => {
+    let valid = true;
+    formParts[props.stepperPos].forEach((field) => {
+      if (form.errors[field] || form.values[field].length === 0) {
+        form.validateField(field);
+        valid = false;
+      }
+    });
+    if (valid) props.nextStep();
+  };
+
   const fieldBlurHandler = (event, name) => {
     form.validateField(name);
   };
-
-  const nextHandler = () => {
-    props.nextStep();
-    // let validated = true;
-    // formParts[props.stepperPos].forEach((field) => {
-    //   form.validateField(field);
-    //   // console.log(form.errors);
-    //   if (form.errors.field) {
-    //     validated = false;
-    //   }
-    // });
-    // // console.log(validated);
-    // if (validated) {
-    //   props.nextStep();
-    // }
-  };
   return (
-    <>
-      <Center>
-        <Text order={2} style={{ textAlign: "center", marginBottom: "40px" }}>
-          Welcome to <strong>Career Development Portal</strong>
-        </Text>
-      </Center>
-      <Paper padding="lg" shadow="sm">
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        flexDirection: "column",
+      }}
+    >
+      <Text
+        style={{
+          fontSize: "2rem",
+          fontWeight: "bold",
+          marginBottom: "1rem",
+          textAlign: "center",
+        }}
+        inline
+        component="span"
+        gradient={{ from: "blue", to: "cyan", deg: 45 }}
+        fontWeight="black"
+        variant="gradient"
+      >
+        <span style={{ color: "black !important" }}>Welcome to</span>{" "}
+        <strong>Career Development Portal</strong>
+      </Text>
+      <Paper
+        padding="lg"
+        style={{
+          width: "80%",
+          position: "relative",
+        }}
+      >
+        <LoadingOverlay visible={loading} />
         <form>
           {props.stepperPos === 0 ? (
             <SignupFormPart1 form={form} fieldBlurHandler={fieldBlurHandler} />
@@ -94,23 +116,39 @@ function SignupForm(props) {
               Back
             </Button>
             {props.stepperPos < 2 ? (
-              <Button type="button" onClick={nextHandler}>
+              <Button
+                type="button"
+                variant="gradient"
+                gradient={{ from: "blue", to: "cyan", deg: 45 }}
+                onClick={nextButtonHandler}
+              >
+                {" "}
                 Next step
               </Button>
             ) : (
               <Button
                 type="button"
+                variant="gradient"
+                gradient={{ from: "blue", to: "cyan", deg: 45 }}
                 onClick={(event) => {
-                  console.log(event);
+                  props.nextStep();
+                  console.log(form.values);
+                  setLoading(true);
+                  setTimeout(() => {
+                    setLoading(false);
+                    form.reset();
+                    props.setStepperPos(0);
+                  }, 1000);
                 }}
               >
+                {" "}
                 Submit
               </Button>
             )}
           </Group>
         </form>
       </Paper>
-    </>
+    </div>
   );
 }
 
