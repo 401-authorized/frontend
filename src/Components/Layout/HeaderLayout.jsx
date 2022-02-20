@@ -1,5 +1,6 @@
 import { Button, Header, Title } from "@mantine/core";
 import React from "react";
+import Logo from "../Assets/SVG/Logo";
 
 function HeaderLayout(props) {
   return (
@@ -21,9 +22,10 @@ function HeaderLayout(props) {
       >
         {props.mediaQuery ? props.mediaQuery : null}
 
-        <Title order={2} style={{ color: "white" }}>
-          <span style={{ fontFamily: "Montserrat" }}>CDC</span>
-          <span style={{ fontFamily: "mono" }}> Portal</span>
+        <Title order={2}>
+          {/* <span style={{ fontFamily: "Montserrat" }}>CDC</span>
+          <span style={{ fontFamily: "mono" }}> Portal</span> */}
+          <Logo />
         </Title>
         <Button variant="outline" style={{ color: "white" }}>
           Visit Site
