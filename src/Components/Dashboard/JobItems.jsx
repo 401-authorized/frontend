@@ -1,4 +1,5 @@
 import { Tabs, Container, Pagination, Card } from "@mantine/core";
+import GradientFont from "../UI/GradientFont";
 // import { useMediaQuery } from '@mantine/hooks';
 import JobItem from "./JobItem";
 
@@ -18,14 +19,14 @@ const JobItems = () => {
     <Container size="lg">
       <Card withBorder radius="md" shadow="md">
         <Tabs grow position="center" style={{ padding: "20px" }}>
-          <Tabs.Tab label="JNF">
+          <Tabs.Tab label={<GradientFont>Job Notification Form (JNF)</GradientFont>}>
             {jobs.map((job) => {
               if (job.type === "JNF") {
                 return <JobItem info={job} />;
               }
             })}
           </Tabs.Tab>
-          <Tabs.Tab label="INF">
+          <Tabs.Tab label={<GradientFont>Internship Notification Form (INF)</GradientFont>}>
             {jobs.map((job) => {
               if (job.type === "INF") {
                 return <JobItem info={job} />;
