@@ -1,8 +1,9 @@
 import { Button, Header, Title } from "@mantine/core";
 import React from "react";
 import Logo from "../Assets/SVG/Logo";
+import NotificationMenu from "./NotificationMenu";
 
-function HeaderLayout(props) {
+const DashboardHeader = (props) => {
   return (
     <Header
       height={70}
@@ -24,15 +25,13 @@ function HeaderLayout(props) {
 
         <Title order={2}>
           {/* <span style={{ fontFamily: "Montserrat" }}>CDC</span>
-          <span style={{ fontFamily: "mono" }}> Portal</span> */}
+            <span style={{ fontFamily: "mono" }}> Portal</span> */}
           <Logo />
         </Title>
-        <Button variant="outline" style={{ color: "white" }}>
-          Visit Site
-        </Button>
+        <NotificationMenu />
       </div>
     </Header>
   );
-}
+};
 
-export default HeaderLayout;
+export default DashboardHeader;
