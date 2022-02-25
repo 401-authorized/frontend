@@ -23,6 +23,9 @@ function Home() {
           <li>
             <Link to="/dashboard">Dashboard</Link>
           </li>
+          <li>
+            <Link to="/JNF">JNF</Link>
+          </li>
         </ul>
       </Center>
     </>

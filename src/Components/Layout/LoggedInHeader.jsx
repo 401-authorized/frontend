@@ -1,7 +1,7 @@
 import { Button, Header, Title } from "@mantine/core";
 import React from "react";
 import Logo from "../Assets/SVG/Logo";
-import NotificationMenu from "./NotificationMenu";
+import NotificationMenu from "../Dashboard/NotificationMenu";
 
 const DashboardHeader = (props) => {
   return (
