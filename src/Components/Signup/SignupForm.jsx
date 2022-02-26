@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import { Button, Group, Text, LoadingOverlay, Paper } from "@mantine/core";
+import { Button, Group, LoadingOverlay, Paper } from "@mantine/core";
 import { useForm } from "@mantine/hooks";
 import SignupFormPart1 from "./SignupFormPart1";
 import SignupFormPart2 from "./SignupFormPart2";
 import SignupFormPart3 from "./SignupFormPart3";
+import WelcomeFont from "../UI/WelcomeFont";
 
 function SignupForm(props) {
   const formParts = [
@@ -56,6 +57,10 @@ function SignupForm(props) {
   const fieldBlurHandler = (event, name) => {
     form.validateField(name);
   };
+
+  const formSubmitHandler = (value) => {
+    console.log(value)
+  }
   return (
     <div
       style={{
@@ -65,22 +70,11 @@ function SignupForm(props) {
         flexDirection: "column",
       }}
     >
-      <Text
-        style={{
-          fontSize: "2rem",
-          fontWeight: "bold",
-          marginBottom: "1rem",
-          textAlign: "center",
-        }}
-        inline
-        component="span"
-        gradient={{ from: "blue", to: "cyan", deg: 45 }}
-        fontWeight="black"
-        variant="gradient"
-      >
-        <span style={{ color: "black !important" }}>Welcome to</span>{" "}
-        <strong>Career Development Portal</strong>
-      </Text>
+      <WelcomeFont>
+      Welcome to Career Development Portal
+      {/* <span style={{ color: "black !important" }}>Welcome to</span>{" "}
+        <strong>Career Development Portal</strong> */}
+      </WelcomeFont>
       <Paper
         padding="lg"
         style={{
@@ -89,7 +83,7 @@ function SignupForm(props) {
         }}
       >
         <LoadingOverlay visible={loading} />
-        <form>
+        <form onSubmit={formSubmitHandler}>
           {props.stepperPos === 0 ? (
             <SignupFormPart1 form={form} fieldBlurHandler={fieldBlurHandler} />
           ) : null}
