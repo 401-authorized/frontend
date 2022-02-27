@@ -2,7 +2,6 @@ import {
   RadioGroup,
   Radio,
   Group,
-  Checkbox,
   NumberInput,
   Center,
   Input,
@@ -71,7 +70,10 @@ const SelectionProcedure = ({ form, fieldBlurHandler }) => {
         />
         <Group>
           <GradientFont>
-            Total number of offers {<br />} (range would be sufficient)
+            Total number of offers
+          </GradientFont>
+          <GradientFont>
+            (Range would be sufficient)
           </GradientFont>
           <Input
             placeholder="4-5"

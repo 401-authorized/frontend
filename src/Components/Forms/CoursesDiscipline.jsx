@@ -1,18 +1,7 @@
 import React, { useEffect, useState } from "react";
 import {
-  createStyles,
-  Chip,
-  Chips,
-  TextInput,
-  Textarea,
-  Group,
-  Button,
-  ThemeIcon,
-  Text,
-  SimpleGrid,
   Accordion,
   useAccordionState,
-  useMantineTheme,
   Space,
 } from "@mantine/core";
 import { coursesAvailable } from "./CoursesAvailable";
