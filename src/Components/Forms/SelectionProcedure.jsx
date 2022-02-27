@@ -6,11 +6,20 @@ import {
   NumberInput,
   Center,
   Input,
+  Chips,
+  Chip,
 } from "@mantine/core";
+import { useEffect, useState } from "react";
 import GradientFont from "../UI/GradientFont";
 import WelcomeFont from "../UI/WelcomeFont";
 
 const SelectionProcedure = ({ form, fieldBlurHandler }) => {
+  const [otherRounds, setOtherRounds] = useState(form.values.otherRounds);
+
+  useEffect(() => {
+    form.setFieldValue("otherRounds", otherRounds);
+  }, [otherRounds]);
+
   return (
     <Center>
       <Group direction="column" position="left" style={{ margin: "30px 0" }}>
@@ -21,12 +30,13 @@ const SelectionProcedure = ({ form, fieldBlurHandler }) => {
           required
           style={{ display: "flex", flexFlow: "row" }}
           spacing="xl"
-          {...form.getInputProps('resumeshortlisting5')} onBlur={event => fieldBlurHandler(event,"resumeshortlisting5")}
+          {...form.getInputProps("shortlistFromResumes")}
+          onBlur={(event) => fieldBlurHandler(event, "shortlistFromResumes")}
         >
-          <Radio value="yes" style={{ margin: "0 0 0 30px" }}>
+          <Radio value="true" style={{ margin: "0 0 0 30px" }}>
             Yes
           </Radio>
-          <Radio value="no">No</Radio>
+          <Radio value="false">No</Radio>
         </RadioGroup>
         <RadioGroup
           label={<GradientFont>Type of Test</GradientFont>}
@@ -34,7 +44,8 @@ const SelectionProcedure = ({ form, fieldBlurHandler }) => {
           required
           style={{ display: "flex", flexFlow: "row" }}
           spacing="xl"
-          {...form.getInputProps('typeoftest5')} onBlur={event => fieldBlurHandler(event,"typeoftest5")}
+          {...form.getInputProps("typeOfTest")}
+          onBlur={(event) => fieldBlurHandler(event, "typeOfTest")}
         >
           <Radio value="technical" style={{ margin: "0px 0 0 30px" }}>
             Technical
@@ -45,23 +56,36 @@ const SelectionProcedure = ({ form, fieldBlurHandler }) => {
         </RadioGroup>
         <Group>
           <GradientFont>Other Qualification Rounds</GradientFont>
-          <Checkbox label="GD" />
-          <Checkbox label="Case Study" />
-          <Checkbox label="Interview" />
+          <Chips multiple value={otherRounds} onChange={setOtherRounds}>
+            <Chip value="GD">GD</Chip>
+            <Chip value="Case Study">Case Study</Chip>
+            <Chip value="Interview">Interview</Chip>
+          </Chips>
         </Group>
         <NumberInput
           label={<GradientFont>Total Nubmer of Rounds</GradientFont>}
           required
           style={{ display: "flex", flexFlow: "row" }}
-          {...form.getInputProps('totalrounds5')} onBlur={event => fieldBlurHandler(event,"totalrounds5")}
+          {...form.getInputProps("totalRounds")}
+          onBlur={(event) => fieldBlurHandler(event, "totalRounds")}
         />
         <Group>
-          <GradientFont>Total number of offers {<br/>} (range would be sufficient)</GradientFont>
-          <Input placeholder="4-5" required {...form.getInputProps('totaloffers5')} onBlur={event => fieldBlurHandler(event,"totaloffers5")}/>
+          <GradientFont>
+            Total number of offers {<br />} (range would be sufficient)
+          </GradientFont>
+          <Input
+            placeholder="4-5"
+            required
+            {...form.getInputProps("numberOfOffers")}
+            onBlur={(event) => fieldBlurHandler(event, "numberOfOffers")}
+          />
         </Group>
         <Group>
           <GradientFont>Eligibility Criteria (if any)</GradientFont>
-          <Input {...form.getInputProps('eligibility5')} onBlur={event => fieldBlurHandler(event,"eligibility5")}/>
+          <Input
+            {...form.getInputProps("eligibilityCriteria")}
+            onBlur={(event) => fieldBlurHandler(event, "eligibilityCriteria")}
+          />
         </Group>
       </Group>
     </Center>

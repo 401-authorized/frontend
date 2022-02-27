@@ -1,4 +1,4 @@
-import { Button, Header, Title } from "@mantine/core";
+import { Button, Container, Header, Title } from "@mantine/core";
 import React from "react";
 import Logo from "../Assets/SVG/Logo";
 
@@ -20,16 +20,18 @@ function HeaderLayout(props) {
           height: "100%",
         }}
       >
-        {props.mediaQuery ? props.mediaQuery : null}
+        <Container>
+          {props.mediaQuery ? props.mediaQuery : null}
 
-        <Title order={2}>
-          {/* <span style={{ fontFamily: "Montserrat" }}>CDC</span>
+          <Title order={2}>
+            {/* <span style={{ fontFamily: "Montserrat" }}>CDC</span>
           <span style={{ fontFamily: "mono" }}> Portal</span> */}
-          <Logo />
-        </Title>
-        <Button variant="outline" style={{ color: "white" }}>
-          Visit Site
-        </Button>
+            <Logo />
+          </Title>
+          <Button variant="outline" style={{ color: "white" }}>
+            Visit Site
+          </Button>
+        </Container>
       </div>
     </Header>
   );

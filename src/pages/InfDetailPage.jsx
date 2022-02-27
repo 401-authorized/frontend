@@ -1,16 +1,17 @@
 import { Container } from "@mantine/core";
-import JNFLayout from "../Components/Forms/JNF/JNFLayout";
+import React from "react";
+import InfLayout from "../Components/InfDetail/InfLayout";
 import LoggedInHeader from "../Components/Layout/LoggedInHeader";
 
-const JNF = () => {
+function InfDetailPage() {
   return (
     <>
       <LoggedInHeader />
       <Container style={{ marginTop: "60px" }}>
-        <JNFLayout />
+        <InfLayout />
       </Container>
     </>
   );
-};
+}
 
-export default JNF;
+export default InfDetailPage;

@@ -1,4 +1,4 @@
-import { Button, Header, Title } from "@mantine/core";
+import { Container, Header, Title } from "@mantine/core";
 import React from "react";
 import Logo from "../Assets/SVG/Logo";
 import NotificationMenu from "../Dashboard/NotificationMenu";
@@ -13,7 +13,7 @@ const DashboardHeader = (props) => {
       })}
     >
       {/* Handle other responsive styles with MediaQuery component or createStyles function */}
-      <div
+      <Container
         style={{
           display: "flex",
           alignItems: "center",
@@ -29,7 +29,7 @@ const DashboardHeader = (props) => {
           <Logo />
         </Title>
         <NotificationMenu />
-      </div>
+      </Container>
     </Header>
   );
 };
