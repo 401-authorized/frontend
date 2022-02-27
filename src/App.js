@@ -4,6 +4,7 @@ import Signup from "./pages/Signup";
 import SignIn from "./pages/SignIn";
 import Dashboard from "./pages/Dashboard";
 import JNF from "./pages/JNF";
+import InfDetailPage from "./pages/InfDetailPage";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
       <Route path="/signin" element={<SignIn />} />
       <Route path="/dashboard" element={<Dashboard />} />
       <Route path="/JNF" element={<JNF />} />
+      <Route path="/INF/:id" element={<InfDetailPage />} />
     </Routes>
   );
 }

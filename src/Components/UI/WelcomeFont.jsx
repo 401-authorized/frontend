@@ -8,7 +8,8 @@ const WelcomeFont = (props) => {
         fontWeight: "bold",
         marginBottom: "1rem",
         textAlign: "center",
-        padding:"10px"
+        padding: "10px",
+        ...props.style,
       }}
       inline
       component="span"
