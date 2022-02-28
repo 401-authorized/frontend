@@ -2,7 +2,7 @@ import CompanyOverview from "../CompanyOverview";
 import SelectionProcedure from "../SelectionProcedure";
 import { Button, Group } from "@mantine/core";
 import { useForm } from "@mantine/hooks";
-import CoursesDiscipline from "../CoursesDiscipline";
+import CoursesDiscipline from "./CoursesDiscipline";
 import UploadDoc from "../UploadDoc";
 import InternDuration from "./InternDuration";
 import InternProfile from "./InternProfile";
@@ -31,7 +31,6 @@ const JNFForm = (props) => {
       mscStudents: [],
       msctechStudents: [],
       mtechStudents: [],
-      phdStudents: [],
       mbaStudents: [],
       skillBasedStudents: [],
     },
