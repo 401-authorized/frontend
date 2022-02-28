@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useMediaQuery } from "@mantine/hooks";
-import JNFStepper from "./JNFStepper";
-import JNFForm from "./JNFForm";
+import INFStepper from "./INFStepper";
+import INFForm from "./INFForm"
 import { Grid } from "@mantine/core";
 
 const JNFLayout = () => {
@@ -9,7 +9,7 @@ const JNFLayout = () => {
 
   const [active, setActive] = useState(0);
   const nextStep = () =>
-    setActive((current) => (current < 5 ? current + 1 : current));
+    setActive((current) => (current < 6 ? current + 1 : current));
   const prevStep = () =>
     setActive((current) => (current > 0 ? current - 1 : current));
 
@@ -23,11 +23,11 @@ const JNFLayout = () => {
       >
         {mediumScreen ? (
           <Grid.Col sm={3} style={{ alignItems: "center" }}>
-            <JNFStepper active={active} setActive={setActive} />
+            <INFStepper active={active} setActive={setActive} />
           </Grid.Col>
         ) : null}
         <Grid.Col span={12} sm={9}>
-          <JNFForm
+          <INFForm
             currentStep={active}
             nextStep={nextStep}
             prevStep={prevStep}

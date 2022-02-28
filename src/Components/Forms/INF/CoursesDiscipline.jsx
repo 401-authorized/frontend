@@ -5,8 +5,8 @@ import {
   Space,
 } from "@mantine/core";
 import { coursesAvailable } from "./CoursesAvailable";
-import WelcomeFont from "../UI/WelcomeFont";
-import CoursesChips from "./CoursesChips";
+import WelcomeFont from "../../UI/WelcomeFont";
+import CoursesChips from "../CoursesChips";
 
 function CoursesDiscipline({ form }) {
   const [state, handlers] = useAccordionState({ total: 8, initialItem: 0 });
@@ -19,7 +19,6 @@ function CoursesDiscipline({ form }) {
     form.values.msctechStudents
   );
   const [mtechStudents, setMtechStudents] = useState(form.values.mtechStudents);
-  const [phdStudents, setPhdStudents] = useState(form.values.phdStudents);
   const [mbaStudents, setMbaStudents] = useState(form.values.mbaStudents);
   const [skillBasedStudents, setSkillBasedStudents] = useState(
     form.values.skillBasedStudents
@@ -40,9 +39,6 @@ function CoursesDiscipline({ form }) {
   useEffect(() => {
     form.setFieldValue("mtechStudents", mtechStudents);
   }, [mtechStudents]);
-  useEffect(() => {
-    form.setFieldValue("phdStudents", phdStudents);
-  }, [phdStudents]);
   useEffect(() => {
     form.setFieldValue("mbaStudents", mbaStudents);
   }, [mbaStudents]);
@@ -102,13 +98,6 @@ function CoursesDiscipline({ form }) {
             value={mscStudents}
             setValue={setMscStudents}
             courses={coursesAvailable.mscStudents}
-          />
-        </Accordion.Item>
-        <Accordion.Item label="PhD Programmes">
-          <CoursesChips
-            value={phdStudents}
-            setValue={setPhdStudents}
-            courses={coursesAvailable.phdStudents}
           />
         </Accordion.Item>
       </Accordion>

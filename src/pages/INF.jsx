@@ -1,16 +1,16 @@
 import { Container } from "@mantine/core";
-import JNFLayout from "../Components/Forms/JNF/JNFLayout";
+import INFLayout from "../Components/Forms/INF/INFLayout"
 import LoggedInHeader from "../Components/Layout/LoggedInHeader";
 
-const JNF = () => {
+const INF = () => {
   return (
     <>
       <LoggedInHeader />
       <Container style={{ marginTop: "3%" }}>
-        <JNFLayout />
+        <INFLayout />
       </Container>
     </>
   );
 };
 
-export default JNF;
+export default INF;

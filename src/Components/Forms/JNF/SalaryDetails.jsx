@@ -9,19 +9,22 @@ const SalaryDetails = ({ form, fieldBlurHandler }) => {
         placeholder="50"
         label="CTC (in LPA)"
         {...form.getInputProps("ctc")}
+        style={{width:"80%"}}
         onBlur={(event) => fieldBlurHandler(event, "ctc")}
       />
       <TextInput
         label="CTC Breakup"
         {...form.getInputProps("ctcBreakup")}
+        style={{width:"80%"}}
         onBlur={(event) => fieldBlurHandler(event, "ctcBreakup")}
       />
       <Textarea
         label="Bond Details (If any)"
         autosize
         minRows={2}
-        maxRows={6}
+        maxRows={10}
         {...form.getInputProps("bondDetails")}
+        style={{width:"80%"}}
         onBlur={(event) => fieldBlurHandler(event, "bondDetails")}
       />
     </Group>

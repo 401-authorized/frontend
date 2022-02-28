@@ -1,11 +1,12 @@
 import CompanyOverview from "../CompanyOverview";
-import JobDetails from "./JobDetails";
-import SalaryDetails from "./SalaryDetails";
 import SelectionProcedure from "../SelectionProcedure";
 import { Button, Group } from "@mantine/core";
 import { useForm } from "@mantine/hooks";
-import CoursesDiscipline from "../CoursesDiscipline";
+import CoursesDiscipline from "./CoursesDiscipline";
 import UploadDoc from "../UploadDoc";
+import InternDuration from "./InternDuration";
+import InternProfile from "./InternProfile";
+import StipendDetails from "./StipendDetails"
 
 const JNFForm = (props) => {
   const form = useForm({
@@ -30,7 +31,6 @@ const JNFForm = (props) => {
       mscStudents: [],
       msctechStudents: [],
       mtechStudents: [],
-      phdStudents: [],
       mbaStudents: [],
       skillBasedStudents: [],
     },
@@ -51,21 +51,22 @@ const JNFForm = (props) => {
         <CompanyOverview form={form} fieldBlurHandler={fieldBlurHandler} />
       ) : null}
       {props.currentStep === 1 ? (
-        <JobDetails form={form} fieldBlurHandler={fieldBlurHandler} />
+        <InternDuration form={form} fieldBlurHandler={fieldBlurHandler} />
       ) : null}
       {props.currentStep === 2 ? (
-        <SalaryDetails form={form} fieldBlurHandler={fieldBlurHandler} />
+        <InternProfile form={form} fieldBlurHandler={fieldBlurHandler} />
       ) : null}
-      {props.currentStep === 3 ? <CoursesDiscipline form={form} /> : null}
-      {props.currentStep === 4 ? (
+      {props.currentStep === 3 ? <StipendDetails form={form} /> : null}
+      {props.currentStep === 4 ? <CoursesDiscipline form={form} /> : null}
+      {props.currentStep === 5 ? (
         <SelectionProcedure form={form} fieldBlurHandler={fieldBlurHandler} />
       ) : null}
-      {props.currentStep === 5 ? <UploadDoc /> : null}
+      {props.currentStep === 6 ? <UploadDoc /> : null}
       <Group position="center" mt="xl">
         <Button variant="default" onClick={props.prevStep}>
           Back
         </Button>
-        {props.active < 5 ? (
+        {props.active < 6 ? (
           <Button onClick={props.nextStep}>Next step</Button>
         ) : (
           <Button type="submit">Submit</Button>
