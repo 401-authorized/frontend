@@ -25,6 +25,7 @@ const JNFForm = (props) => {
       totalRounds: "",
       numberOfOffers: "",
       eligibilityCriteria: "",
+      internshipDuration:[],
       otherRounds: [],
       btechStudents: [],
       fiveYrsStudents: [],
