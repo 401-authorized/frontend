@@ -12,7 +12,7 @@ function HeaderLayout(props) {
       })}
     >
       {/* Handle other responsive styles with MediaQuery component or createStyles function */}
-      <div
+      <Container
         style={{
           display: "flex",
           alignItems: "center",
@@ -20,19 +20,17 @@ function HeaderLayout(props) {
           height: "100%",
         }}
       >
-        <Container>
-          {props.mediaQuery ? props.mediaQuery : null}
+        {props.mediaQuery ? props.mediaQuery : null}
 
-          <Title order={2}>
-            {/* <span style={{ fontFamily: "Montserrat" }}>CDC</span>
+        <Title order={2}>
+          {/* <span style={{ fontFamily: "Montserrat" }}>CDC</span>
           <span style={{ fontFamily: "mono" }}> Portal</span> */}
-            <Logo />
-          </Title>
-          <Button variant="outline" style={{ color: "white" }}>
-            Visit Site
-          </Button>
-        </Container>
-      </div>
+          <Logo />
+        </Title>
+        <Button variant="outline" style={{ color: "white" }}>
+          Visit Site
+        </Button>
+      </Container>
     </Header>
   );
 }
