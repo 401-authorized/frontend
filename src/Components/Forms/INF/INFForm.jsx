@@ -6,9 +6,9 @@ import CoursesDiscipline from "./CoursesDiscipline";
 import UploadDoc from "../UploadDoc";
 import InternDuration from "./InternDuration";
 import InternProfile from "./InternProfile";
-import StipendDetails from "./StipendDetails"
+import StipendDetails from "./StipendDetails";
 
-const JNFForm = (props) => {
+const INFForm = (props) => {
   const form = useForm({
     initialValues: {
       nameOfTheCompany: "",
@@ -25,7 +25,7 @@ const JNFForm = (props) => {
       totalRounds: "",
       numberOfOffers: "",
       eligibilityCriteria: "",
-      internshipDuration:[],
+      internshipDuration: [],
       otherRounds: [],
       btechStudents: [],
       fiveYrsStudents: [],
@@ -68,7 +68,15 @@ const JNFForm = (props) => {
           Back
         </Button>
         {props.active < 6 ? (
-          <Button onClick={props.nextStep}>Next step</Button>
+          <Button
+            type="button"
+            onClick={() => {
+              console.log(props.active);
+              props.nextStep();
+            }}
+          >
+            Next step
+          </Button>
         ) : (
           <Button type="submit">Submit</Button>
         )}
@@ -77,4 +85,4 @@ const JNFForm = (props) => {
   );
 };
 
-export default JNFForm;
+export default INFForm;

@@ -7,6 +7,8 @@ import JNF from "./pages/JNF";
 import INF from "./pages/INF";
 import InfDetailPage from "./pages/InfDetailPage";
 import Landing from "./pages/Landing";
+import Invitation from "./pages/Invitation";
+import Profile from "./pages/Profile";
 
 function App() {
   return (
@@ -19,6 +21,8 @@ function App() {
       <Route path="/JNF" element={<JNF />} />
       <Route path="/INF/:id" element={<InfDetailPage />} />
       <Route path="/INF" element={<INF />} />
+      <Route path="/invitationlink" element={<Invitation />} />
+      <Route path="/profile" element={<Profile />} />
     </Routes>
   );
 }
