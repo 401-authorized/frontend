@@ -8,7 +8,7 @@ function InfDetailItems({ title, value }) {
         {title}
       </Text>
       <Text color="#7493AC" size="md">
-        {value}
+        {value ? value : "N/A"}
       </Text>
     </>
   );

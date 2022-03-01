@@ -8,23 +8,23 @@ const CompanyOverview = ({ form, fieldBlurHandler }) => {
       <TextInput
         placeholder="Name of the Company"
         label="Name"
-        {...form.getInputProps("nameOfTheCompany")}
-        onBlur={(event) => fieldBlurHandler(event, "nameOfTheCompany")}
-        style={{width:"80%"}}
+        {...form.getInputProps("nameOfCompany")}
+        onBlur={(event) => fieldBlurHandler(event, "nameOfCompany")}
+        style={{ width: "80%" }}
       />
       <TextInput
         placeholder="www.company.com"
         label="Website"
         {...form.getInputProps("website")}
         onBlur={(event) => fieldBlurHandler(event, "website")}
-        style={{width:"80%"}}
+        style={{ width: "80%" }}
       />
       <TextInput
         placeholder="Web Developer"
         label="Category/Sector"
         {...form.getInputProps("sector")}
         onBlur={(event) => fieldBlurHandler(event, "sector")}
-        style={{width:"80%"}}
+        style={{ width: "80%" }}
       />
     </Group>
   );

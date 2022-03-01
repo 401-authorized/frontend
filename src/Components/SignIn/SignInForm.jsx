@@ -2,20 +2,22 @@ import { TextInput, Button, LoadingOverlay } from "@mantine/core";
 import { useForm } from "@mantine/hooks";
 import { PasswordInput } from "@mantine/core";
 import { Card } from "@mantine/core";
-import axios from "axios";
-import { API_URL } from "../../config/constants";
-import { useState } from "react";
-import { toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
-import { useLocalStorageValue } from "@mantine/hooks";
+// import axios from "axios";
+// import { API_URL } from "../../config/constants";
+// import { useState } from "react";
+// import { toast } from "react-toastify";
+// import { useNavigate } from "react-router-dom";
+// import { useLocalStorageValue } from "@mantine/hooks";
+import { useAuth } from "../../hooks/useAuth";
 
 const SignInForm = () => {
-  const [token, setToken] = useLocalStorageValue({
-    key: "token",
-    defaultValue: null,
-  });
-  const navigate = useNavigate();
-  const [loading, setLoading] = useState(false);
+  // const [token, setToken] = useLocalStorageValue({
+  //   key: "token",
+  //   defaultValue: null,
+  // });
+  // const navigate = useNavigate();
+  // const [loading, setLoading] = useState(false);
+  const { login, loading } = useAuth();
   const form = useForm({
     initialValues: {
       email: "",
@@ -33,24 +35,25 @@ const SignInForm = () => {
   });
 
   const formSubmitHandler = form.onSubmit((values, event) => {
-    setLoading(true);
-    axios
-      .post(`${API_URL}hr/login`, values)
-      .then((res) => {
-        setToken(res.data.token);
-        navigate("/dashboard");
-      })
-      .catch((err) => {
-        console.log(err);
-        const message = err?.response?.data?.message || "Something went wrong";
-        toast.error(message, {
-          position: "top-right",
-          autoClose: 1000,
-          closeOnClick: true,
-          progress: undefined,
-        });
-        setLoading(false);
-      });
+    // setLoading(true);
+    // axios
+    //   .post(`${API_URL}hr/login`, values)
+    //   .then((res) => {
+    //     setToken(res.data.token);
+    //     navigate("/dashboard");
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //     const message = err?.response?.data?.message || "Something went wrong";
+    //     toast.error(message, {
+    //       position: "top-right",
+    //       autoClose: 1000,
+    //       closeOnClick: true,
+    //       progress: undefined,
+    //     });
+    //     setLoading(false);
+    //   });
+    login(values);
   });
 
   return (

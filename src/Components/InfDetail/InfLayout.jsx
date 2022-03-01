@@ -8,7 +8,7 @@ import InfDetailItemsList from "./InfDetailItemsList";
 import EligibleCourses from "./EligibleCourses";
 import SelectionProcedure from "./SelectionProcedure";
 
-function InfLayout() {
+function InfLayout({ inf }) {
   return (
     <Grid>
       <Grid.Col>
@@ -19,7 +19,7 @@ function InfLayout() {
             border: "1px solid #e6e6e6",
           }}
         >
-          <WelcomeFont>{InfDemoData.nameOfCompany}</WelcomeFont>
+          <WelcomeFont>{inf.nameOfCompany}</WelcomeFont>
         </Paper>
         <Space h="xl" />
         <Paper
@@ -44,9 +44,9 @@ function InfLayout() {
               <div style={{ color: "#2873AC", fontSize: "20px" }}>Website</div>
               <a
                 style={{ color: "#2873AC", display: "block" }}
-                href={InfDemoData.website}
+                href={inf.website}
               >
-                {InfDemoData.website}
+                {inf.website}
               </a>
             </div>
             <div
@@ -59,7 +59,7 @@ function InfLayout() {
               <div style={{ color: "#2873AC", fontSize: "20px" }}>
                 Category / Sector
               </div>
-              <div style={{ color: "#7493AC" }}>{InfDemoData.sector}</div>
+              <div style={{ color: "#7493AC" }}>{inf.sector}</div>
             </div>
           </div>
         </Paper>
@@ -88,9 +88,9 @@ function InfLayout() {
             Internship Notification
           </WelcomeFont>
           <InternshipDuration duration={InfDemoData.duration} />
-          <InfDetailItemsList infDemoData={InfDemoData} />
-          <EligibleCourses InfDemoData={InfDemoData} />
-          <SelectionProcedure InfDemoData={InfDemoData} />
+          <InfDetailItemsList infDemoData={inf} />
+          <EligibleCourses InfDemoData={inf} />
+          <SelectionProcedure InfDemoData={inf} />
           <Space h="xl" />
         </Paper>
         <Space h="xl" />
