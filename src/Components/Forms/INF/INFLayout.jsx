@@ -4,7 +4,7 @@ import INFStepper from "./INFStepper";
 import INFForm from "./INFForm"
 import { Grid } from "@mantine/core";
 
-const JNFLayout = () => {
+const INFLayout = () => {
   const mediumScreen = useMediaQuery("(min-width: 769px)");
 
   const [active, setActive] = useState(0);
@@ -39,4 +39,4 @@ const JNFLayout = () => {
   );
 };
 
-export default JNFLayout;
+export default INFLayout;
