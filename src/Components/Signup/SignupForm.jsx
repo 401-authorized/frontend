@@ -5,6 +5,11 @@ import SignupFormPart1 from "./SignupFormPart1";
 import SignupFormPart2 from "./SignupFormPart2";
 import SignupFormPart3 from "./SignupFormPart3";
 import WelcomeFont from "../UI/WelcomeFont";
+import { useLocation } from "react-router-dom";
+import axios from "axios";
+import { API_URL } from "../../config/constants";
+import { useAuth } from "../../hooks/useAuth";
+import { toast } from "react-toastify";
 
 function SignupForm(props) {
   const formParts = [
@@ -14,6 +19,7 @@ function SignupForm(props) {
   ];
 
   const [loading, setLoading] = useState(false);
+  const { loading: loginLoading, login } = useAuth();
   const form = useForm({
     initialValues: {
       email: "",
@@ -58,9 +64,28 @@ function SignupForm(props) {
     form.validateField(name);
   };
 
-  const formSubmitHandler = (value) => {
-    console.log(value)
-  }
+  const formSubmitHandler = form.onSubmit((values) => {
+    setLoading(true);
+    const { hash, companyId } = props.invitationData;
+    values.hash = hash;
+    values.companyId = companyId;
+    axios
+      .post(`${API_URL}hr/register`, values)
+      .then((res) => {
+        login(values);
+        setLoading(false);
+        toast.success("Signup successful redirecting to dashboard", {
+          position: "top-right",
+          autoClose: 1000,
+        });
+      })
+      .catch((err) => {
+        setLoading(false);
+        const message =
+          err?.response?.data?.message || "opps something went wrong";
+        toast.error(message);
+      });
+  });
   return (
     <div
       style={{
@@ -71,8 +96,8 @@ function SignupForm(props) {
       }}
     >
       <WelcomeFont>
-      Welcome to Career Development Portal
-      {/* <span style={{ color: "black !important" }}>Welcome to</span>{" "}
+        Welcome to Career Development Portal
+        {/* <span style={{ color: "black !important" }}>Welcome to</span>{" "}
         <strong>Career Development Portal</strong> */}
       </WelcomeFont>
       <Paper
@@ -82,8 +107,8 @@ function SignupForm(props) {
           position: "relative",
         }}
       >
-        <LoadingOverlay visible={loading} />
-        <form onSubmit={formSubmitHandler}>
+        <LoadingOverlay visible={loading || loginLoading} />
+        <form>
           {props.stepperPos === 0 ? (
             <SignupFormPart1 form={form} fieldBlurHandler={fieldBlurHandler} />
           ) : null}
@@ -124,16 +149,7 @@ function SignupForm(props) {
                 type="button"
                 variant="gradient"
                 gradient={{ from: "blue", to: "cyan", deg: 45 }}
-                onClick={(event) => {
-                  props.nextStep();
-                  console.log(form.values);
-                  setLoading(true);
-                  setTimeout(() => {
-                    setLoading(false);
-                    form.reset();
-                    props.setStepperPos(0);
-                  }, 1000);
-                }}
+                onClick={formSubmitHandler}
               >
                 {" "}
                 Submit

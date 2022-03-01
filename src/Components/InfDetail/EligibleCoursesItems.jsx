@@ -2,8 +2,7 @@ import { Grid, Text } from "@mantine/core";
 import React from "react";
 
 function EligibleCoursesItems({ name, value }) {
-  console.log(name);
-  console.log(value);
+  if (value.length === 0) return null;
   const courses = value.join(", ");
   return (
     <>

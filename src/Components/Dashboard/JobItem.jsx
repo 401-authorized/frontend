@@ -1,42 +1,72 @@
 import React from "react";
-import { Card, Grid, Button, Group } from "@mantine/core";
-import { useMediaQuery } from '@mantine/hooks';
+import { Card, Grid, Button, Group, Anchor, Tooltip } from "@mantine/core";
+import { useMediaQuery } from "@mantine/hooks";
 import GradientFont from "../UI/GradientFont";
+import { Link } from "react-router-dom";
+import EyeIcon from "../Assets/SVG/EyeIcon";
+import EditIcon from "../Assets/SVG/EditIcon";
 
 const JobItem = (props) => {
-  const largeScreen = useMediaQuery('(min-width: 576px)');
+  const largeScreen = useMediaQuery("(min-width: 576px)");
   return (
     <Card
       withBorder="true"
       shadow="sm"
       padding="xs"
       radius="lg"
-      style={{ margin: "20px"}}
+      style={{ margin: "20px" }}
     >
       <Grid justify="center" align="center" columns={15}>
-
-        <Grid.Col span={15} xs={4} align="center"> 
-        <GradientFont>Designaiton</GradientFont>
-          <p style={{margin:"5px"}}>{props.info.designation}</p>
+        <Grid.Col span={15} xs={4} align="center">
+          <GradientFont>Company</GradientFont>
+          <p style={{ margin: "5px" }}>{props.info.nameOfCompany}</p>
         </Grid.Col>
 
         <Grid.Col span={15} xs={4} align="center">
-        <GradientFont>Place of Posting</GradientFont>
-          <p style={{margin:"5px"}}>{props.info.pop}</p>
+          <GradientFont>Place of Posting</GradientFont>
+          <p style={{ margin: "5px" }}>{props.info.placeOfPosting}</p>
         </Grid.Col>
 
         <Grid.Col span={15} xs={4} align="center">
-        <GradientFont>CTC</GradientFont>
-          <p style={{margin:"5px"}}>{`${props.info.ctc} LPA`}</p>
+          <GradientFont>{props.info?.ctc ? "CTC" : "Stipend"}</GradientFont>
+          <p style={{ margin: "5px" }}>
+            {props.info.ctc ? `${props.info.ctc} LPA` : `${props.info.stipend}`}
+          </p>
         </Grid.Col>
 
-        <Grid.Col span={15} xs={3} style={{minWidth:"180px"}}>
-          <Group grow={`${largeScreen} ? "false" : "true"`} direction="row" position={`${largeScreen} ? left : center`} align="center" >
-          <Button >View</Button>
-          <Button >Edit</Button>
+        <Grid.Col span={15} xs={3} style={{ minWidth: "180px" }}>
+          <Group
+            grow={`${largeScreen} ? "false" : "true"`}
+            direction="row"
+            position={`${largeScreen} ? left : center`}
+            align="center"
+          >
+            <Anchor
+              component={Link}
+              to={
+                props.type === "inf"
+                  ? `/inf/${props.info._id}`
+                  : `/JNF/${props.info._id}`
+              }
+            >
+              <Tooltip label="view">
+                <EyeIcon />
+              </Tooltip>
+            </Anchor>
+            <Anchor
+              component={Link}
+              to={
+                props.type === "inf"
+                  ? `/inf?id=${props.info._id}`
+                  : `/JNF?id=${props.info._id}`
+              }
+            >
+              <Tooltip label="edit">
+                <EditIcon />
+              </Tooltip>
+            </Anchor>
           </Group>
         </Grid.Col>
-
       </Grid>
     </Card>
   );

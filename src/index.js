@@ -6,7 +6,7 @@ import App from "./App";
 import "react-toastify/dist/ReactToastify.min.css";
 import "./index.css";
 import { ToastContainer } from "react-toastify";
-import AuthContext from "./Components/Context/auth-context";
+import { AuthProvider } from "./hooks/useAuth";
 
 ReactDOM.render(
   <MantineProvider
@@ -17,10 +17,12 @@ ReactDOM.render(
       },
     }}
   >
-      <BrowserRouter>
+    <BrowserRouter>
+      <AuthProvider>
         <App />
         <ToastContainer />
-      </BrowserRouter>
+      </AuthProvider>
+    </BrowserRouter>
   </MantineProvider>,
   document.getElementById("root")
 );

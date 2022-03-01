@@ -1,10 +1,10 @@
-import { Grid } from "@mantine/core";
+import { Container, Grid } from "@mantine/core";
 import { useMediaQuery } from "@mantine/hooks";
 import React, { useState } from "react";
 import SignupForm from "./SignupForm";
 import SignupStepper from "./SignupStepper";
 
-function SIgnupLayout() {
+function SIgnupLayout({ invitationData }) {
   const [stepperActive, setStepperActive] = useState(0);
   const nextStep = () =>
     setStepperActive((current) => (current < 3 ? current + 1 : current));
@@ -12,12 +12,7 @@ function SIgnupLayout() {
     setStepperActive((current) => (current > 0 ? current - 1 : current));
   const matches = useMediaQuery("(min-width: 1000px)");
   return (
-    <div
-      style={{
-        height: "calc(100vh - 80px)",
-        minHeight: "500px",
-      }}
-    >
+    <Container style={{ height: "100%" }}>
       <Grid style={{ height: "100%", width: "100%" }}>
         <Grid.Col
           md={6}
@@ -36,6 +31,7 @@ function SIgnupLayout() {
               prevStep={prevStep}
               stepperPos={stepperActive}
               setStepperPos={setStepperActive}
+              invitationData={invitationData}
             />
           </div>
         </Grid.Col>
@@ -53,7 +49,7 @@ function SIgnupLayout() {
           <SignupStepper active={stepperActive} setActive={setStepperActive} />
         </Grid.Col>
       </Grid>
-    </div>
+    </Container>
   );
 }
 

@@ -1,18 +1,28 @@
-import { Menu, Divider, Button } from '@mantine/core';
+import { Menu, Divider, Button, Avatar, ActionIcon } from "@mantine/core";
+import { useAuth } from "../../hooks/useAuth";
+import { AccountIcon } from "../Assets/SVG/AccountIcon";
 // import { PinRightIcon, ImageIcon } from '@modulz/radix-icons';
 
 const NotificationMenu = () => {
+  const { logout } = useAuth();
   return (
-    <Menu control={<Button>Account</Button>}>
+    <Menu
+      control={
+        <ActionIcon variant="transparent">
+          <AccountIcon />
+        </ActionIcon>
+      }
+    >
       <Menu.Label>Application</Menu.Label>
-      <Menu.Item >Profile</Menu.Item>
-      
+      <Menu.Item>Profile</Menu.Item>
+
       <Divider />
 
-      <Menu.Label>Danger zone</Menu.Label>
-      <Menu.Item color="red" >Log Out</Menu.Item>
+      <Menu.Item color="red" onClick={logout}>
+        Log Out
+      </Menu.Item>
     </Menu>
   );
-}
+};
 
 export default NotificationMenu;

@@ -1,9 +1,11 @@
-import { Container, Header, Title } from "@mantine/core";
+import { Button, Container, Header, Title } from "@mantine/core";
 import React from "react";
+import { useAuth } from "../../hooks/useAuth";
 import Logo from "../Assets/SVG/Logo";
 import NotificationMenu from "../Dashboard/NotificationMenu";
 
 const DashboardHeader = (props) => {
+  const { auth } = useAuth();
   return (
     <Header
       height={70}
@@ -28,7 +30,12 @@ const DashboardHeader = (props) => {
             <span style={{ fontFamily: "mono" }}> Portal</span> */}
           <Logo />
         </Title>
-        <NotificationMenu />
+        {!auth && (
+          <Button variant="outline" style={{ color: "white" }}>
+            Visit Site
+          </Button>
+        )}
+        {auth && <NotificationMenu />}
       </Container>
     </Header>
   );
