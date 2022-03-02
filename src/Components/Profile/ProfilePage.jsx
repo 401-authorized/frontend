@@ -1,11 +1,11 @@
 import { Button, Card, Center, Group, Text } from "@mantine/core";
-import { useMediaQuery } from '@mantine/hooks';
+import { useMediaQuery } from "@mantine/hooks";
 import { useAuth } from "../../hooks/useAuth";
 import WelcomeFont from "../UI/WelcomeFont";
 import ProfileItem from "./ProfileItem";
 
 const ProfilePage = ({ admin }) => {
-  const matches = useMediaQuery('(min-width: 800px)');
+  const matches = useMediaQuery("(min-width: 800px)");
   const { user } = useAuth();
   const user_data = admin ? user : user.hr;
   console.log(user);

@@ -102,7 +102,13 @@ const JobItems = ({ admin }) => {
             {!loadingJnfs &&
               jnfs.map((job, idx) => {
                 return (
-                  <JobItem admin={admin} key={idx} info={job} type="jnf" />
+                  <JobItem
+                    admin={admin}
+                    key={idx}
+                    info={job}
+                    type="jnf"
+                    setLoading={setLoadingJnfs}
+                  />
                 );
               })}
             {!loadingJnfs && (
@@ -125,7 +131,13 @@ const JobItems = ({ admin }) => {
             {!loadingInfs &&
               infs.map((job, idx) => {
                 return (
-                  <JobItem key={idx} admin={admin} info={job} type="inf" />
+                  <JobItem
+                    key={idx}
+                    admin={admin}
+                    info={job}
+                    type="inf"
+                    setLoading={setLoadingInfs}
+                  />
                 );
               })}
             {!loadingInfs && (
