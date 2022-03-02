@@ -1,5 +1,13 @@
 import React from "react";
-import { Card, Grid, Button, Group, Anchor, Tooltip } from "@mantine/core";
+import {
+  Card,
+  Grid,
+  Button,
+  Group,
+  Anchor,
+  Tooltip,
+  Center,
+} from "@mantine/core";
 import { useMediaQuery } from "@mantine/hooks";
 import GradientFont from "../UI/GradientFont";
 import { Link } from "react-router-dom";
@@ -50,10 +58,13 @@ const JobItem = (props) => {
                   : `${link}/JNF/${props.info._id}`
               }
             >
-              <Tooltip label="view">
-                <EyeIcon />
-              </Tooltip>
+              <Center>
+                <Tooltip label="view">
+                  <EyeIcon />
+                </Tooltip>
+              </Center>
             </Anchor>
+
             {!props.admin && (
               <Anchor
                 component={Link}
@@ -68,6 +79,7 @@ const JobItem = (props) => {
                 </Tooltip>
               </Anchor>
             )}
+
           </Group>
         </Grid.Col>
       </Grid>

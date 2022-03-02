@@ -38,6 +38,7 @@ function App() {
             <Route path="/JNF/:id" element={<JnfDetailPage />} />
             <Route path="/INF/:id" element={<InfDetailPage />} />
             <Route path="/INF" element={<INF />} />
+            <Route path="/admin/invitationlink" element={<Invitation />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/changepassword" element={<ChangePasswordPage />} />
           </Route>

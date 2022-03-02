@@ -18,6 +18,7 @@ function HeaderLayout(props) {
           alignItems: "center",
           justifyContent: "space-between",
           height: "100%",
+          width:"100%"
         }}
       >
         {props.mediaQuery ? props.mediaQuery : null}

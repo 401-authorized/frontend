@@ -1,4 +1,4 @@
-import { Grid, Paper, Space } from "@mantine/core";
+import { Button, Grid, Group, Paper, Space } from "@mantine/core";
 import React from "react";
 import WelcomeFont from "../UI/WelcomeFont";
 import { InfDemoData } from "./InfDemoData";
@@ -92,6 +92,12 @@ function InfLayout({ inf }) {
           <EligibleCourses InfDemoData={inf} />
           <SelectionProcedure InfDemoData={inf} />
           <Space h="xl" />
+          <Space h="xl" />
+          <Group direction="row">
+            <Button variant="outline" >Back</Button>
+            <Space w="xs" />
+            <Button>Print</Button>
+          </Group>
         </Paper>
         <Space h="xl" />
         <Space h="xl" />
