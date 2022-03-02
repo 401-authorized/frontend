@@ -1,9 +1,9 @@
-import LandingPage from "../Components/Landing/LandingPage";
+import LandingPage from "../Components/Landing/Landing/LandingPage";
 import LoggedInHeader from "../Components/Layout/HeaderLayout"
 const Landing = () => {
   return (
     <>
-      <LoggedInHeader/>
+      {/* <LoggedInHeader/> */}
       <LandingPage />
     </>
   );
