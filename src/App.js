@@ -27,7 +27,7 @@ function App() {
             <Route path="/JNF" element={<JNF />} />
             <Route path="/INF/:id" element={<InfDetailPage />} />
             <Route path="/INF" element={<INF />} />
-            <Route path="/invitationlink" element={<Invitation />} />
+            <Route path="/admin/invitationlink" element={<Invitation />} />
             <Route path="/profile" element={<Profile />} />
           </Route>
         </Routes>
