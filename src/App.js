@@ -19,6 +19,7 @@ import AdminProfile from "./pages/admin/Profile";
 import ProtectedAdminRoute from "./Components/utils/ProtectedAdminRoute";
 import JnfDetailPage from "./pages/JnfDetailPage";
 import AdminJnfDetailPage from "./pages/admin/JNFDetail";
+import PageNotFound from "./pages/404-page";
 import ChangePasswordPage from "./pages/ChangePasswordPage";
 import AdminChangePasswordPage from "./pages/admin/ChangePasswordPage";
 // import Landing from "./pages/Landing";
@@ -40,17 +41,19 @@ function App() {
             <Route path="/JNF/:id" element={<JnfDetailPage />} />
             <Route path="/INF/:id" element={<InfDetailPage />} />
             <Route path="/INF" element={<INF />} />
+            <Route path="/admin/invitationlink" element={<Invitation />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/changepassword" element={<ChangePasswordPage />} />
           </Route>
           <Route element={<ProtectedAdminRoute />}>
             <Route path="/admin/changepassword" element={<AdminChangePasswordPage />} />
             <Route path="/admin/dashboard" element={<AdminDashboard />} />
-            <Route path="/admin/invitationlink" element={<Invitation />} />
+            <Route path="/admin/invitation" element={<Invitation />} />
             <Route path="/admin/INF/:id" element={<AdminInfDetailPage />} />
             <Route path="/admin/profile" element={<AdminProfile />} />
             <Route path="/admin/JNF/:id" element={<AdminJnfDetailPage />} />
           </Route>
+          <Route path="*" element={<PageNotFound />} />
         </Routes>
       ) : (
         <div> Loading... </div>
