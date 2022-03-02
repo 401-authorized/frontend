@@ -7,7 +7,7 @@ body {
   margin: 0;
   padding: 0;
   background: "linear-gradient(135.3deg, rgba(192, 213, 255, 0.532) -10.47%, rgba(255, 255, 255, 0.076) 104.07%)";
-  font-family: "Montserrat";
+  font-family: "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji";
 }
 #root {
   min-height: 100vh;

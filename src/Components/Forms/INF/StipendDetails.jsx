@@ -5,40 +5,35 @@ import {
   Input,
   TextInput,
   Space,
+  Checkbox,
 } from "@mantine/core";
 import GradientFont from "../../UI/GradientFont";
 import WelcomeFont from "../../UI/WelcomeFont";
 
-const StipendDetails = () => {
+const StipendDetails = ({ form }) => {
   return (
     <Group direction="column" position="center" align="center">
       <WelcomeFont>Stipend Details</WelcomeFont>
       <TextInput
+        {...form.getInputProps("stipend")}
         label="Stipend Details"
         required
-        style={{ width: "80%", display: "flex", flexFlow: "row", justifyContent:"space-evenly" }}
-      />
-      <Space h="10px" />
-      <RadioGroup
-        label="PPO provision on performance basis"
-        required
         style={{
-          display: "flex",
-          flexDirection: "row",
-          justifyContent:"space-between",
-          margin: "0 10%",
+          width: "80%",
         }}
-      >
-        <Radio value="Yes" style={{ margin: "0 20px" }}>
-          Yes
-        </Radio>
-        <Radio value="No">No</Radio>
-      </RadioGroup>
-      <Space h="10px" />
+      />
       <TextInput
         label="CTC for PPO selects"
+        {...form.getInputProps("ctcDetails")}
         required
-        style={{ width: "80%", display: "flex", flexFlow: "row", justifyContent:"space-evenly" }}
+        style={{
+          width: "80%",
+        }}
+      />
+      <Checkbox
+        label="PPO provision on performance basis"
+        {...form.getInputProps("provisionForPPO", { type: "checkbox" })}
+        style={{ width: "80%" }}
       />
     </Group>
   );
