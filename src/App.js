@@ -10,7 +10,6 @@ import ProtectedRoute from "./Components/utils/ProtectedRoute";
 import { useAuth } from "./hooks/useAuth";
 import Invitation from "./pages/admin/Invitation";
 import Profile from "./pages/Profile";
-// import ProtectedAdminRoute from "./Components/utils/ProtectedAdminRoute";
 import AdminLogin from "./pages/admin/login";
 import AdminDashboard from "./pages/admin/Dashboard";
 import AdminInfDetailPage from "./pages/admin/INFDetail";
@@ -42,14 +41,13 @@ function App() {
             <Route path="/JNF/:id" element={<JnfDetailPage />} />
             <Route path="/INF/:id" element={<InfDetailPage />} />
             <Route path="/INF" element={<INF />} />
-            <Route path="/admin/invitationlink" element={<Invitation />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/changepassword" element={<ChangePasswordPage />} />
           </Route>
           <Route element={<ProtectedAdminRoute />}>
             <Route path="/admin/changepassword" element={<AdminChangePasswordPage />} />
             <Route path="/admin/dashboard" element={<AdminDashboard />} />
-            <Route path="/admin/invitation" element={<Invitation />} />
+            <Route path="/admin/invitationlink" element={<Invitation />} />
             <Route path="/admin/INF/:id" element={<AdminInfDetailPage />} />
             <Route path="/admin/profile" element={<AdminProfile />} />
             <Route path="/admin/JNF/:id" element={<AdminJnfDetailPage />} />

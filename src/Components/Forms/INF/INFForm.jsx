@@ -87,7 +87,7 @@ const INFForm = ({ currentStep, nextStep, active, prevStep, inf, id }) => {
     })
       .then((res) => {
         console.log(res);
-        toast.success("JNF Form Submitted Successfully");
+        toast.success("INF Form Submitted Successfully");
         navigate("/dashboard");
       })
       .catch((err) => {
