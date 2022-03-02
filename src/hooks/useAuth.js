@@ -17,6 +17,7 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [tokenChecking, setTokenChecking] = useState(true);
   const [loading, setLoading] = useState(false);
+  const [adminAuth, setAdminAuth] = useState(false);
 
   useEffect(() => {
     checkJwtToken();
@@ -47,11 +48,58 @@ export const AuthProvider = ({ children }) => {
       });
   };
 
+  const adminLogin = (values) => {
+    setLoading(true);
+    axios
+      .post(`${API_URL}admin/login`, values)
+      .then((res) => {
+        setAdminAuth(true);
+        const user_data = res.data.admin;
+        user_data.token = res.data.token;
+        console.log(res.data.token);
+        setToken(res.data.token);
+        setUser(user_data);
+        navigate("/admin/dashboard");
+      })
+      .catch((err) => {
+        console.log(err);
+        const message = err?.response?.data?.message || "Something went wrong";
+        toast.error(message, {
+          position: "top-right",
+          autoClose: 1000,
+          closeOnClick: true,
+          progress: undefined,
+        });
+        setLoading(false);
+      });
+  };
+
   const logout = () => {
     setAuth(false);
+    setAdminAuth(false);
     setToken(null);
     setUser(null);
     navigate("/");
+  };
+
+  const checkAdminToken = () => {
+    axios
+      .get(`${API_URL}admin`, { headers: { Authorization: `Bearer ${token}` } })
+      .then((res) => {
+        setAdminAuth(true);
+        let user_data = res.data.admin;
+        user_data.token = token;
+        setUser(user_data);
+        setTokenChecking(false);
+      })
+      .catch((err) => {
+        console.log("HI");
+        setAuth(false);
+        setAdminAuth(false);
+        setUser(null);
+        setToken(null);
+        setTokenChecking(false);
+      });
   };
 
   const checkJwtToken = () => {
@@ -66,10 +114,7 @@ export const AuthProvider = ({ children }) => {
           setTokenChecking(false);
         })
         .catch((err) => {
-          setAuth(false);
-          setUser(null);
-          setToken(null);
-          setTokenChecking(false);
+          checkAdminToken();
         });
     } else {
       console.log("No Token Found");
@@ -89,6 +134,8 @@ export const AuthProvider = ({ children }) => {
         logout,
         loading,
         tokenChecking,
+        adminLogin,
+        adminAuth,
       }}
     >
       {children}

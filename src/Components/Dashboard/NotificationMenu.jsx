@@ -1,10 +1,13 @@
 import { Menu, Divider, Button, Avatar, ActionIcon } from "@mantine/core";
+import { Link } from "react-router-dom";
 import { useAuth } from "../../hooks/useAuth";
 import { AccountIcon } from "../Assets/SVG/AccountIcon";
 // import { PinRightIcon, ImageIcon } from '@modulz/radix-icons';
 
 const NotificationMenu = () => {
   const { logout } = useAuth();
+  const { adminAuth } = useAuth();
+  const profileUrl = adminAuth ? "/admin/profile" : "/profile";
   return (
     <Menu
       control={
@@ -14,7 +17,9 @@ const NotificationMenu = () => {
       }
     >
       <Menu.Label>Application</Menu.Label>
-      <Menu.Item>Profile</Menu.Item>
+      <Menu.Item component={Link} to={profileUrl}>
+        Profile
+      </Menu.Item>
 
       <Divider />
 

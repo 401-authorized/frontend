@@ -3,17 +3,11 @@ import { useAuth } from "../../hooks/useAuth";
 import WelcomeFont from "../UI/WelcomeFont";
 import ProfileItem from "./ProfileItem";
 
-const HRdata = {
-  name: "Tanwir",
-  email: "tanwir@csesociety.ac.in",
-  designation: "Director",
-  number: "9872536472",
-  company: "The CSE Society",
-};
-
-const ProfilePage = () => {
+const ProfilePage = ({ admin }) => {
   const { user } = useAuth();
+  const user_data = admin ? user : user.hr;
   console.log(user);
+  console.log(user_data);
   return (
     <Group position="center" align="center" direction="column">
       <Card
@@ -25,15 +19,18 @@ const ProfilePage = () => {
           <WelcomeFont>Profile</WelcomeFont>
         </Center>
         {/* <Group position="center" align="flex-start" direction="column"> */}
-        <ProfileItem tag="Name" value={user.hr.name} />
-        <ProfileItem tag="Email" value={user.hr.email} />
-        <ProfileItem tag="Designation" value={user.hr.designation} />
-        <ProfileItem tag="Number" value={user.hr.mobileNumber} />
-        <ProfileItem tag="Company" value={user.hr.company} />
+        <ProfileItem tag="Name" value={user_data.name} />
+        <ProfileItem tag="Email" value={user_data.email} />
+        {!admin && (
+          <>
+            <ProfileItem tag="Designation" value={user_data.designation} />
+            <ProfileItem tag="Number" value={user_data.mobileNumber} />
+            <ProfileItem tag="Company" value={user_data.company} />
+          </>
+        )}
         <Group position="center" align="center">
           <Button size="md">Edit</Button>
         </Group>
-        {/* </Group> */}
       </Card>
     </Group>
   );
