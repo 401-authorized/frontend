@@ -1,6 +1,6 @@
 import { Container } from "@mantine/core";
 import INFLayout from "../Components/Forms/INF/INFLayout"
-import LoggedInHeader from "../Components/Layout/LoggedInHeader";
+import LoggedInHeader from "../Components/Layout/HeaderLayout";
 
 const INF = () => {
   return (

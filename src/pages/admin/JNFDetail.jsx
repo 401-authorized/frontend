@@ -10,7 +10,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import JnfLayout from "../../Components/InfDetail/JNFDetail/JnfLayout";
-import LoggedInHeader from "../../Components/Layout/LoggedInHeader";
+import LoggedInHeader from "../../Components/Layout/HeaderLayout";
 import { API_URL } from "../../config/constants";
 import { useAuth } from "../../hooks/useAuth";
 

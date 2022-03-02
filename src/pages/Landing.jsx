@@ -1,10 +1,9 @@
 import LandingPage from "../Components/Landing/LandingPage";
-import HeaderLayout from "../Components/Layout/HeaderLayout";
-
+import LoggedInHeader from "../Components/Layout/HeaderLayout"
 const Landing = () => {
   return (
     <>
-      <HeaderLayout />
+      <LoggedInHeader/>
       <LandingPage />
     </>
   );

@@ -1,8 +1,12 @@
+import { useMediaQuery } from "@mantine/hooks";
+
 const Logo = () => {
+  const matches = useMediaQuery('(min-width: 576px)');
+  
   return (
     <svg
-      width="130"
-      height="29"
+      width={matches ? "140" : "100"}
+      // height="29"
       viewBox="0 0 189 27"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"

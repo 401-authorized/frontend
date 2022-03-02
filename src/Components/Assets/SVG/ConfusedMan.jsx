@@ -1,10 +1,15 @@
+// import { useMediaQuery } from "@mantine/hooks";
 const ConfusedMan = () => {
+  // const matches = useMediaQuery("(min-width: 900px && max-width: 1200px)");
+  // const matches2 = useMediaQuery("()");
   return (
     <svg
-      height="350px"
+      height="280"
+      // height={matches2 ? "280px" : "230px"}
       viewBox="0 0 532 439"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      style={{margin:"0 3rem"}}
     >
       <g filter="url(#filter0_d_118_360)">
         <ellipse cx="227" cy="212.5" rx="193" ry="193.5" fill="white" />
