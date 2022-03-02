@@ -6,7 +6,7 @@ import { useMediaQuery } from "@mantine/hooks";
 const ContentBox = () => {
   const matches = useMediaQuery('(max-width: 576px)');
   return (
-    <Group direction={matches ? "column" : "row"} align="center" position="apart" style={{minWidth:"70%", borderRadius:"30px", padding:"2rem", background:"rgba(0, 242, 255,0.1)"}}>
+    <Group direction={matches ? "column" : "row"} align="center" position="apart" style={{minWidth:"70%", maxWidth:"60%", borderColor:"white", border:"sold", borderRadius:"30px", padding:"2rem", background:"rgba(18, 122, 255, 1)"}}>
       <ContentItem
         icon={<Icon />}
         tag="Accessibility"
