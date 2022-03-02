@@ -19,6 +19,7 @@ import AdminProfile from "./pages/admin/Profile";
 import ProtectedAdminRoute from "./Components/utils/ProtectedAdminRoute";
 import JnfDetailPage from "./pages/JnfDetailPage";
 import AdminJnfDetailPage from "./pages/admin/JNFDetail";
+import PageNotFound from "./pages/404-page";
 
 function App() {
   const { tokenChecking } = useAuth();
@@ -41,11 +42,12 @@ function App() {
           </Route>
           <Route element={<ProtectedAdminRoute />}>
             <Route path="/admin/dashboard" element={<AdminDashboard />} />
-            <Route path="/admin/invitationlink" element={<Invitation />} />
+            <Route path="/admin/invitation" element={<Invitation />} />
             <Route path="/admin/INF/:id" element={<AdminInfDetailPage />} />
             <Route path="/admin/profile" element={<AdminProfile />} />
             <Route path="/admin/JNF/:id" element={<AdminJnfDetailPage />} />
           </Route>
+          <Route path="*" element={<PageNotFound />} />
         </Routes>
       ) : (
         <div> Loading... </div>
