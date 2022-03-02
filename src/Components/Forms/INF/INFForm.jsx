@@ -47,6 +47,7 @@ const INFForm = ({ currentStep, nextStep, active, prevStep, inf, id }) => {
       provisionForPPO: inf?.provisionForPPO ? inf.provisionForPPO : true, // added
       ctcDetails: inf?.ctcDetails ? inf.ctcDetails : "", // added
       graduationYear: inf?.graduationYear ? inf.graduationYear : "",
+      documents: inf?.documents ? inf.documents : [],
     },
   });
 
@@ -58,15 +59,32 @@ const INFForm = ({ currentStep, nextStep, active, prevStep, inf, id }) => {
     if (id) {
       updateInf(values);
     } else {
-      createInf(values);
+      const newForm = new FormData();
+      for (let key in values) {
+        console.log(key, values[key]);
+        if (key === "documents") {
+          values[key].forEach((file) => {
+            newForm.append(key, file);
+          });
+        } else {
+          newForm.append(key, values[key]);
+        }
+      }
+      console.log(newForm);
+      createInf(newForm);
     }
   });
 
-  const createInf = (values) => {
-    axios
-      .post(`${API_URL}inf`, values, {
-        headers: { Authorization: `Bearer ${user.token}` },
-      })
+  const createInf = (formUpload) => {
+    axios({
+      url: `${API_URL}inf`,
+      data: formUpload,
+      method: "POST",
+      headers: {
+        "Content-Type": "multipart/form-data",
+        Authorization: `Bearer ${user.token}`,
+      },
+    })
       .then((res) => {
         console.log(res);
         toast.success("JNF Form Submitted Successfully");
@@ -81,6 +99,8 @@ const INFForm = ({ currentStep, nextStep, active, prevStep, inf, id }) => {
   };
 
   const updateInf = (values) => {
+    delete values.documents;
+    values.documents = undefined;
     axios
       .put(`${API_URL}inf/${id}`, values, {
         headers: { Authorization: `Bearer ${user.token}` },
@@ -114,12 +134,12 @@ const INFForm = ({ currentStep, nextStep, active, prevStep, inf, id }) => {
       {currentStep === 5 ? (
         <SelectionProcedure form={form} fieldBlurHandler={fieldBlurHandler} />
       ) : null}
-      {currentStep === 6 ? <UploadDoc /> : null}
+      {!inf && currentStep === 6 ? <UploadDoc form={form} /> : null}
       <Group position="center" mt="xl">
         <Button variant="default" onClick={prevStep}>
           Back
         </Button>
-        {active < 6 ? (
+        {active < (!inf ? 6 : 5) ? (
           <Button
             type="button"
             onClick={() => {
