@@ -28,7 +28,9 @@ const INFStepper = (props) => {
       <Stepper.Step label="Step 4" description="Stipend Details" />
       <Stepper.Step label="Step 5" description="Courses & Discipline" />
       <Stepper.Step label="Step 6" description="Selection Procedure" />
-      <Stepper.Step label="Step 7" description="Upload Documents" />
+      {!props.id && (
+        <Stepper.Step label="Step 7" description="Upload Documents" />
+      )}
       <Stepper.Completed />
     </Stepper>
   );
