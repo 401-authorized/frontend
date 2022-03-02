@@ -19,6 +19,7 @@ import AdminProfile from "./pages/admin/Profile";
 import ProtectedAdminRoute from "./Components/utils/ProtectedAdminRoute";
 import JnfDetailPage from "./pages/JnfDetailPage";
 import AdminJnfDetailPage from "./pages/admin/JNFDetail";
+import ChangePasswordPage from "./pages/ChangePasswordPage";
 
 function App() {
   const { tokenChecking } = useAuth();
@@ -38,6 +39,7 @@ function App() {
             <Route path="/INF/:id" element={<InfDetailPage />} />
             <Route path="/INF" element={<INF />} />
             <Route path="/profile" element={<Profile />} />
+            <Route path="/changepassword" element={<ChangePasswordPage />} />
           </Route>
           <Route element={<ProtectedAdminRoute />}>
             <Route path="/admin/dashboard" element={<AdminDashboard />} />
