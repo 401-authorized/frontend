@@ -9,29 +9,29 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
-import JnfLayout from "../Components/InfDetail/JNFDetail/JnfLayout";
-import LoggedInHeader from "../Components/Layout/LoggedInHeader";
-import { API_URL } from "../config/constants";
-import { useAuth } from "../hooks/useAuth";
+import InfLayout from "../../Components/InfDetail/InfLayout";
+import LoggedInHeader from "../../Components/Layout/LoggedInHeader";
+import { API_URL } from "../../config/constants";
+import { useAuth } from "../../hooks/useAuth";
 
-function JnfDetailPage() {
+function AdminInfDetailPage() {
   const { user } = useAuth();
   const { id } = useParams();
   const [loading, setLoading] = useState(true);
-  const [jnf, setJnf] = useState(null);
+  const [inf, setInf] = useState(null);
   useEffect(() => {
-    fetchJnf();
+    fetchInf();
   }, []);
-  const fetchJnf = () => {
+  const fetchInf = () => {
     setLoading(true);
     console.log(id);
     axios
-      .get(`${API_URL}jnf/${id}`, {
+      .get(`${API_URL}inf/${id}`, {
         headers: { Authorization: `Bearer ${user.token}` },
       })
       .then((res) => {
         console.log(res.data);
-        setJnf(res.data.jnf);
+        setInf(res.data.inf);
       })
       .catch((err) => {
         toast.error("oops!! some error occured on our side");
@@ -59,17 +59,17 @@ function JnfDetailPage() {
             <Anchor component={Link} to="/">
               ~
             </Anchor>
-            <Anchor component={Link} to="/dashboard">
+            <Anchor component={Link} to="/admin/dashboard">
               Dashboard
             </Anchor>
-            <Anchor>JNF</Anchor>
+            <Anchor>INF</Anchor>
           </Breadcrumbs>
         </div>
         <LoadingOverlay visible={loading} />
-        {!loading && jnf && <JnfLayout jnf={jnf} />}
+        {!loading && inf && <InfLayout inf={inf} />}
       </Container>
     </>
   );
 }
 
-export default JnfDetailPage;
+export default AdminInfDetailPage;

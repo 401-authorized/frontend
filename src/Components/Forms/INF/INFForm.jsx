@@ -7,33 +7,45 @@ import UploadDoc from "../UploadDoc";
 import InternDuration from "./InternDuration";
 import InternProfile from "./InternProfile";
 import StipendDetails from "./StipendDetails";
+import axios from "axios";
+import { API_URL } from "../../../config/constants";
+import { useAuth } from "../../../hooks/useAuth";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
-const INFForm = (props) => {
+const INFForm = ({ currentStep, nextStep, active, prevStep, inf, id }) => {
+  const { user } = useAuth();
+  const navigate = useNavigate();
   const form = useForm({
     initialValues: {
-      nameOfTheCompany: "",
-      website: "",
-      sector: "",
-      designation: "",
-      placeOfPosting: "",
-      description: "",
-      ctc: "",
-      ctcBreakup: "",
-      bondDetails: "",
-      shortlistFromResumes: "",
-      typeOfTest: "",
-      totalRounds: "",
-      numberOfOffers: "",
-      eligibilityCriteria: "",
-      internshipDuration: [],
-      otherRounds: [],
-      btechStudents: [],
-      fiveYrsStudents: [],
-      mscStudents: [],
-      msctechStudents: [],
-      mtechStudents: [],
-      mbaStudents: [],
-      skillBasedStudents: [],
+      nameOfCompany: inf?.nameOfCompany ? inf.nameOfCompany : "",
+      sector: inf?.sector ? inf.sector : "",
+      website: inf?.website ? inf.website : "",
+      duration: inf?.duration ? inf.duration : [], //added
+      description: inf?.description ? inf.description : "",
+      designation: inf?.designation ? inf.designation : "",
+      mode: inf?.mode ? inf.mode : "", // added
+      placeOfPosting: inf?.placeOfPosting ? inf.placeOfPosting : "",
+      btechStudents: inf?.btechStudents ? inf.btechStudents : [],
+      fiveYrsStudents: inf?.fiveYrsStudents ? inf.fiveYrsStudents : [],
+      skillBasedStudents: inf?.skillBasedStudents ? inf.skillBasedStudents : [],
+      mscStudents: inf?.mscStudents ? inf.mscStudents : [],
+      msctechStudents: inf?.msctechStudents ? inf.msctechStudents : [],
+      mtechStudents: inf?.mtechStudents ? inf.mtechStudents : [],
+      mbaStudents: inf?.mbaStudents ? inf.mbaStudents : [],
+      shortlistFromResumes: inf?.shortlistFromResumes
+        ? inf.shortlistFromResumes
+        : true,
+      eligibilityCriteria: inf?.eligibilityCriteria
+        ? inf.eligibilityCriteria
+        : "",
+      typeOfTest: inf?.typeOfTest ? inf.typeOfTest : "",
+      otherRounds: inf?.otherRounds ? inf.otherRounds : [],
+      totalRounds: inf?.totalRounds ? inf.totalRounds : "",
+      numberOfOffers: inf?.numberOfOffers ? inf.numberOfOffers : "",
+      stipend: inf?.stipend ? inf.stipend : "", // added
+      provisionForPPO: inf?.provisionForPPO ? inf.provisionForPPO : true, // added
+      ctcDetails: inf?.ctcDetails ? inf.ctcDetails : "", // added
     },
   });
 
@@ -41,44 +53,85 @@ const INFForm = (props) => {
     form.validateField(name);
   };
 
-  const formSubmitHandler = (event) => {
-    event.preventDefault();
-    console.log(form.values);
+  const formSubmitHandler = form.onSubmit((values, event) => {
+    if (id) {
+      updateInf(values);
+    } else {
+      createInf(values);
+    }
+  });
+
+  const createInf = (values) => {
+    axios
+      .post(`${API_URL}inf`, values, {
+        headers: { Authorization: `Bearer ${user.token}` },
+      })
+      .then((res) => {
+        console.log(res);
+        toast.success("JNF Form Submitted Successfully");
+        navigate("/dashboard");
+      })
+      .catch((err) => {
+        toast.error(
+          err.response.data.message || "oops!! some error occured on our side"
+        );
+        navigate("/dashboard");
+      });
+  };
+
+  const updateInf = (values) => {
+    axios
+      .put(`${API_URL}inf/${id}`, values, {
+        headers: { Authorization: `Bearer ${user.token}` },
+      })
+      .then((res) => {
+        console.log(res);
+        toast.success("JNF Form Updated Successfully");
+        navigate("/dashboard");
+      })
+      .catch((err) => {
+        toast.error(
+          err.response.data.message || "oops!! some error occured on our side"
+        );
+        navigate("/dashboard");
+      });
   };
 
   return (
-    <form onSubmit={formSubmitHandler}>
-      {props.currentStep === 0 ? (
+    <form>
+      {currentStep === 0 ? (
         <CompanyOverview form={form} fieldBlurHandler={fieldBlurHandler} />
       ) : null}
-      {props.currentStep === 1 ? (
+      {currentStep === 1 ? (
         <InternDuration form={form} fieldBlurHandler={fieldBlurHandler} />
       ) : null}
-      {props.currentStep === 2 ? (
+      {currentStep === 2 ? (
         <InternProfile form={form} fieldBlurHandler={fieldBlurHandler} />
       ) : null}
-      {props.currentStep === 3 ? <StipendDetails form={form} /> : null}
-      {props.currentStep === 4 ? <CoursesDiscipline form={form} /> : null}
-      {props.currentStep === 5 ? (
+      {currentStep === 3 ? <StipendDetails form={form} /> : null}
+      {currentStep === 4 ? <CoursesDiscipline form={form} /> : null}
+      {currentStep === 5 ? (
         <SelectionProcedure form={form} fieldBlurHandler={fieldBlurHandler} />
       ) : null}
-      {props.currentStep === 6 ? <UploadDoc /> : null}
+      {currentStep === 6 ? <UploadDoc /> : null}
       <Group position="center" mt="xl">
-        <Button variant="default" onClick={props.prevStep}>
+        <Button variant="default" onClick={prevStep}>
           Back
         </Button>
-        {props.active < 6 ? (
+        {active < 6 ? (
           <Button
             type="button"
             onClick={() => {
-              console.log(props.active);
-              props.nextStep();
+              console.log(active);
+              nextStep();
             }}
           >
             Next step
           </Button>
         ) : (
-          <Button type="submit">Submit</Button>
+          <Button onClick={formSubmitHandler} type="button">
+            Submit
+          </Button>
         )}
       </Group>
     </form>

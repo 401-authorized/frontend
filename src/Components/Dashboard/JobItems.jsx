@@ -15,7 +15,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { API_URL } from "../../config/constants";
 import { Link, useLocation } from "react-router-dom";
-const JobItems = () => {
+const JobItems = ({ admin }) => {
   const { user } = useAuth();
   const [infs, setInfs] = useState([]);
   const [jnfs, setJnfs] = useState([]);
@@ -101,7 +101,9 @@ const JobItems = () => {
             <LoadingOverlay visible={loadingJnfs} />
             {!loadingJnfs &&
               jnfs.map((job, idx) => {
-                return <JobItem key={idx} info={job} type="jnf" />;
+                return (
+                  <JobItem admin={admin} key={idx} info={job} type="jnf" />
+                );
               })}
             {!loadingJnfs && (
               <Pagination
@@ -122,7 +124,9 @@ const JobItems = () => {
             <LoadingOverlay visible={loadingInfs} />
             {!loadingInfs &&
               infs.map((job, idx) => {
-                return <JobItem key={idx} info={job} type="inf" />;
+                return (
+                  <JobItem key={idx} admin={admin} info={job} type="inf" />
+                );
               })}
             {!loadingInfs && (
               <Pagination

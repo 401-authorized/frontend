@@ -16,6 +16,7 @@ import EditIcon from "../Assets/SVG/EditIcon";
 
 const JobItem = (props) => {
   const largeScreen = useMediaQuery("(min-width: 576px)");
+  const link = props.admin ? "/admin" : "";
   return (
     <Card
       withBorder="true"
@@ -53,8 +54,8 @@ const JobItem = (props) => {
               component={Link}
               to={
                 props.type === "inf"
-                  ? `/inf/${props.info._id}`
-                  : `/JNF/${props.info._id}`
+                  ? `${link}/inf/${props.info._id}`
+                  : `${link}/JNF/${props.info._id}`
               }
             >
               <Center>
@@ -63,20 +64,22 @@ const JobItem = (props) => {
                 </Tooltip>
               </Center>
             </Anchor>
-            <Anchor
-              component={Link}
-              to={
-                props.type === "inf"
-                  ? `/inf?id=${props.info._id}`
-                  : `/JNF?id=${props.info._id}`
-              }
-            >
-              <Center>
+
+            {!props.admin && (
+              <Anchor
+                component={Link}
+                to={
+                  props.type === "inf"
+                    ? `/inf?id=${props.info._id}`
+                    : `/JNF?id=${props.info._id}`
+                }
+              >
                 <Tooltip label="edit">
                   <EditIcon />
                 </Tooltip>
-              </Center>
-            </Anchor>
+              </Anchor>
+            )}
+
           </Group>
         </Grid.Col>
       </Grid>

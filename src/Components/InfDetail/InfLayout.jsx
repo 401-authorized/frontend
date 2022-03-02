@@ -87,7 +87,7 @@ function InfLayout({ inf }) {
           >
             Internship Notification
           </WelcomeFont>
-          <InternshipDuration duration={InfDemoData.duration} />
+          <InternshipDuration duration={inf.duration} />
           <InfDetailItemsList infDemoData={inf} />
           <EligibleCourses InfDemoData={inf} />
           <SelectionProcedure InfDemoData={inf} />

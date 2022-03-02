@@ -1,11 +1,13 @@
 import { Button, Container, Header, Title } from "@mantine/core";
 import React from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../hooks/useAuth";
 import Logo from "../Assets/SVG/Logo";
 import NotificationMenu from "../Dashboard/NotificationMenu";
 
 const DashboardHeader = (props) => {
-  const { auth } = useAuth();
+  const { auth, adminAuth } = useAuth();
+  const navigate = useNavigate();
   return (
     <Header
       height={70}
@@ -27,16 +29,18 @@ const DashboardHeader = (props) => {
         {props.mediaQuery ? props.mediaQuery : null}
 
         <Title order={2}>
+          <Link to={adminAuth ? "/admin/dashboard" : "dashboard"}>
+            <Logo />
+          </Link>
           {/* <span style={{ fontFamily: "Montserrat" }}>CDC</span>
-            <span style={{ fontFamily: "mono" }}> Portal</span> */}
-          <Logo />
+            <sp0an style={{ fontFamily: "mono" }}> Portal</span> */}
         </Title>
-        {!auth && (
+        {!auth && !adminAuth && (
           <Button variant="outline" style={{ color: "white" }}>
             Visit Site
           </Button>
         )}
-        {auth && <NotificationMenu />}
+        {(auth || adminAuth) && <NotificationMenu />}
       </Container>
     </Header>
   );
