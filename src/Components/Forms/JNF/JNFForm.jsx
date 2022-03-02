@@ -42,6 +42,7 @@ const JNFForm = ({ currentStep, nextStep, prevStep, active, jnf, id }) => {
       phdStudents: jnf?.phdStudents ? jnf.phdStudents : [],
       mbaStudents: jnf?.mbaStudents ? jnf.mbaStudents : [],
       skillBasedStudents: jnf?.skillBasedStudents ? jnf.skillBasedStudents : [],
+      graduationYear: jnf?.graduationYear ? jnf.graduationYear : "",
     },
   });
 

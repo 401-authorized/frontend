@@ -46,6 +46,7 @@ const INFForm = ({ currentStep, nextStep, active, prevStep, inf, id }) => {
       stipend: inf?.stipend ? inf.stipend : "", // added
       provisionForPPO: inf?.provisionForPPO ? inf.provisionForPPO : true, // added
       ctcDetails: inf?.ctcDetails ? inf.ctcDetails : "", // added
+      graduationYear: inf?.graduationYear ? inf.graduationYear : "",
     },
   });
 
