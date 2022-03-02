@@ -8,7 +8,6 @@ import INF from "./pages/INF";
 import InfDetailPage from "./pages/InfDetailPage";
 import ProtectedRoute from "./Components/utils/ProtectedRoute";
 import { useAuth } from "./hooks/useAuth";
-import Landing from "./pages/Landing";
 import Invitation from "./pages/admin/Invitation";
 import Profile from "./pages/Profile";
 // import ProtectedAdminRoute from "./Components/utils/ProtectedAdminRoute";
@@ -22,7 +21,8 @@ import AdminJnfDetailPage from "./pages/admin/JNFDetail";
 import PageNotFound from "./pages/404-page";
 import ChangePasswordPage from "./pages/ChangePasswordPage";
 import AdminChangePasswordPage from "./pages/admin/ChangePasswordPage";
-// import Landing from "./pages/Landing";
+import SideNavigation from "./Components/Layout/SideNavigation";
+import Landing from "./pages/Landing";
 
 function App() {
   const { tokenChecking } = useAuth();
@@ -35,6 +35,7 @@ function App() {
           <Route path="/signup" element={<Signup />} />
           <Route path="/signin" element={<SignIn />} />
           <Route path="/admin/signin" element={<AdminLogin />} />
+          <Route path="/check" element={<SideNavigation />} />
           <Route element={<ProtectedRoute />}>
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/JNF" element={<JNF />} />

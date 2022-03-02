@@ -22,7 +22,7 @@ import { useAuth } from "../../hooks/useAuth";
 
 const JobItem = (props) => {
   const { user } = useAuth();
-  const largeScreen = useMediaQuery("(min-width: 576px)");
+  const largeScreen = useMediaQuery("(min-width: 575px)");
   const link = props.admin ? "/admin" : "";
 
   const downloadPdf = (id) => {
