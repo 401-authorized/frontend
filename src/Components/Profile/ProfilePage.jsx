@@ -27,7 +27,7 @@ const ProfilePage = ({ admin }) => {
           <>
             <ProfileItem tag="Designation" value={user_data.designation} />
             <ProfileItem tag="Number" value={user_data.mobileNumber} />
-            <ProfileItem tag="Company" value={user_data.company} />
+            <ProfileItem tag="Company" value={user_data.companyId.name} />
           </>
         )}
         <Group position="center" align="center">

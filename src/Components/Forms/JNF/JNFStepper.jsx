@@ -27,7 +27,7 @@ const JNFStepper = (props) => {
       <Stepper.Step label="Step 3" description="Salary Details" />
       <Stepper.Step label="Step 4" description="Courses & Discipline" />
       <Stepper.Step label="Step 5" description="Selection Procedure" />
-      <Stepper.Step label="Step 6" description="Contact Details" />
+      <Stepper.Step label="Step 6" description="Upload Documents" />
       <Stepper.Completed />
     </Stepper>
   );
