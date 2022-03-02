@@ -9,12 +9,12 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
-import JnfLayout from "../Components/InfDetail/JNFDetail/JnfLayout";
-import LoggedInHeader from "../Components/Layout/LoggedInHeader";
-import { API_URL } from "../config/constants";
-import { useAuth } from "../hooks/useAuth";
+import JnfLayout from "../../Components/InfDetail/JNFDetail/JnfLayout";
+import LoggedInHeader from "../../Components/Layout/LoggedInHeader";
+import { API_URL } from "../../config/constants";
+import { useAuth } from "../../hooks/useAuth";
 
-function JnfDetailPage() {
+function AdminJnfDetailPage() {
   const { user } = useAuth();
   const { id } = useParams();
   const [loading, setLoading] = useState(true);
@@ -43,7 +43,7 @@ function JnfDetailPage() {
   };
   return (
     <>
-      <LoggedInHeader />
+      <LoggedInHeader admin />
       <Container
         style={{ marginTop: "60px", minHeight: "100vh", position: "relative" }}
       >
@@ -59,7 +59,7 @@ function JnfDetailPage() {
             <Anchor component={Link} to="/">
               ~
             </Anchor>
-            <Anchor component={Link} to="/dashboard">
+            <Anchor component={Link} to="/admin/dashboard">
               Dashboard
             </Anchor>
             <Anchor>JNF</Anchor>
@@ -72,4 +72,4 @@ function JnfDetailPage() {
   );
 }
 
-export default JnfDetailPage;
+export default AdminJnfDetailPage;

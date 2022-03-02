@@ -1,7 +1,7 @@
 import { Grid, Paper, Space } from "@mantine/core";
 import React from "react";
-import WelcomeFont from "../UI/WelcomeFont";
-import "../../style/infDetail/infDetail.style.css";
+import WelcomeFont from "../../UI/WelcomeFont";
+import "../../../style/infDetail/infDetail.style.css";
 import JnfDetailItemsList from "./JnfDetailItemsList";
 import EligibleCourses from "./EligibleCourses";
 import SelectionProcedure from "./SelectionProcedure";
