@@ -97,3 +97,55 @@ export const AuthProvider = ({ children }) => {
 };
 
 export const useAuth = () => useContext(AuthContext);
+
+
+
+// const adminLogin = (values) => {
+//   setLoading(true);
+//   axios
+//     .post(`${API_URL}admin/login`, values)
+//     .then((res) => {
+//       setAuth(true);
+//       const user_data = res.data.user;
+//       user_data.token = res.data.token;
+//       setToken(res.data.token);
+//       setUser(user_data);
+//       navigate("/dashboard");
+//     })
+//     .catch((err) => {
+//       console.log(err);
+//       const message = err?.response?.data?.message || "Something went wrong";
+//       toast.error(message, {
+//         position: "top-right",
+//         autoClose: 1000,
+//         closeOnClick: true,
+//         progress: undefined,
+//       });
+//       setLoading(false);
+//     });
+// };
+
+
+// const checkJwtToken = () => {
+//   if (!user && token) {
+//     axios
+//       .get(`${API_URL}admin/`, { headers: { Authorization: `Bearer ${token}` } })
+//       .then((res) => {
+//         setAuth(true);
+//         let user_data = res.data;
+//         user_data.token = token;
+//         setUser(user_data);
+//         setTokenChecking(false);
+//       })
+//       .catch((err) => {
+//         setAuth(false);
+//         setUser(null);
+//         setToken(null);
+//         setTokenChecking(false);
+//       });
+//   } else {
+//     console.log("No Token Found");
+//     setLoading(false);
+//     setTokenChecking(false);
+//   }
+// };

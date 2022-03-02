@@ -34,7 +34,7 @@ const JobItem = (props) => {
           </p>
         </Grid.Col>
 
-        <Grid.Col span={15} xs={3} style={{ minWidth: "180px" }}>
+        <Grid.Col span={15} xs={3}>
           <Group
             grow={`${largeScreen} ? "false" : "true"`}
             direction="row"
