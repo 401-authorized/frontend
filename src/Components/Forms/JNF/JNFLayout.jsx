@@ -62,7 +62,7 @@ const JNFLayout = () => {
         >
           {mediumScreen ? (
             <Grid.Col sm={3} style={{ alignItems: "center" }}>
-              <JNFStepper active={active} setActive={setActive} />
+              <JNFStepper active={active} setActive={setActive} id={id} />
             </Grid.Col>
           ) : null}
           <Grid.Col span={12} sm={9}>

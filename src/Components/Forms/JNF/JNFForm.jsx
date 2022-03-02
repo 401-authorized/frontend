@@ -43,6 +43,7 @@ const JNFForm = ({ currentStep, nextStep, prevStep, active, jnf, id }) => {
       mbaStudents: jnf?.mbaStudents ? jnf.mbaStudents : [],
       skillBasedStudents: jnf?.skillBasedStudents ? jnf.skillBasedStudents : [],
       graduationYear: jnf?.graduationYear ? jnf.graduationYear : "",
+      documents: jnf?.documents ? jnf.documents : [],
     },
   });
 
@@ -58,15 +59,31 @@ const JNFForm = ({ currentStep, nextStep, prevStep, active, jnf, id }) => {
     if (id) {
       updateJnf(values);
     } else {
-      createJnf(values);
+      const newForm = new FormData();
+      for (let key in values) {
+        console.log(key, values[key]);
+        if (key === "documents") {
+          values[key].forEach((file) => {
+            newForm.append(key, file);
+          });
+        } else {
+          newForm.append(key, values[key]);
+        }
+      }
+      createJnf(newForm);
     }
   });
 
-  const createJnf = (values) => {
-    axios
-      .post(`${API_URL}jnf`, values, {
-        headers: { Authorization: `Bearer ${user.token}` },
-      })
+  const createJnf = (formUpload) => {
+    axios({
+      url: `${API_URL}jnf`,
+      data: formUpload,
+      method: "POST",
+      headers: {
+        "Content-Type": "multipart/form-data",
+        Authorization: `Bearer ${user.token}`,
+      },
+    })
       .then((res) => {
         console.log(res);
         toast.success("JNF Form Submitted Successfully");
@@ -113,12 +130,12 @@ const JNFForm = ({ currentStep, nextStep, prevStep, active, jnf, id }) => {
       {currentStep === 4 ? (
         <SelectionProcedure form={form} fieldBlurHandler={fieldBlurHandler} />
       ) : null}
-      {currentStep === 5 ? <UploadDoc /> : null}
+      {!id && currentStep === 5 ? <UploadDoc form={form} /> : null}
       <Group position="center" mt="xl">
         <Button variant="default" onClick={prevStep}>
           Back
         </Button>
-        {active < 5 ? (
+        {active < (!id ? 5 : 4) ? (
           <Button onClick={nextStep}>Next step</Button>
         ) : (
           <Button onClick={formSubmitHandler} type="button">
