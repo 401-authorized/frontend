@@ -23,13 +23,13 @@ const DashboardHeader = (props) => {
           alignItems: "center",
           justifyContent: "space-between",
           height: "100%",
-          width:"100%"
+          width: "100%",
         }}
       >
         {props.mediaQuery ? props.mediaQuery : null}
 
         <Title order={2}>
-          <Link to={adminAuth ? "/admin/dashboard" : "dashboard"}>
+          <Link to={adminAuth ? "/admin/dashboard" : "/dashboard"}>
             <Logo />
           </Link>
           {/* <span style={{ fontFamily: "Montserrat" }}>CDC</span>

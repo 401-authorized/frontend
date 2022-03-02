@@ -13,10 +13,41 @@ import GradientFont from "../UI/GradientFont";
 import { Link } from "react-router-dom";
 import EyeIcon from "../Assets/SVG/EyeIcon";
 import EditIcon from "../Assets/SVG/EditIcon";
+import DownloadIcon from "../Assets/SVG/DownloadIcon";
+import { API_URL } from "../../config/constants";
+import axios from "axios";
+import fileDownload from "js-file-download";
+import { toast } from "react-toastify";
+import { useAuth } from "../../hooks/useAuth";
 
 const JobItem = (props) => {
+  const { user } = useAuth();
   const largeScreen = useMediaQuery("(min-width: 576px)");
   const link = props.admin ? "/admin" : "";
+
+  const downloadPdf = (id) => {
+    const link = `${API_URL}pdf/${props.type}/${id}`;
+    props.setLoading(true);
+
+    axios({
+      url: link,
+      method: "GET",
+      responseType: "arraybuffer",
+      headers: {
+        Authorization: `Bearer ${user.token}`,
+        Accept: "application/pdf",
+      },
+    })
+      .then((res) => {
+        props.setLoading(false);
+        fileDownload(res.data, `${props.type}-${id}.pdf`);
+      })
+      .catch((err) => {
+        props.setLoading(false);
+        toast.error("Error in downloading file");
+        console.log(err);
+      });
+  };
   return (
     <Card
       withBorder="true"
@@ -48,6 +79,7 @@ const JobItem = (props) => {
             grow={`${largeScreen} ? "false" : "true"`}
             direction="row"
             position={`${largeScreen} ? left : center`}
+            style={{ width: "100%" }}
             align="center"
           >
             <Anchor
@@ -74,12 +106,20 @@ const JobItem = (props) => {
                     : `/JNF?id=${props.info._id}`
                 }
               >
-                <Tooltip label="edit">
-                  <EditIcon />
-                </Tooltip>
+                <Center>
+                  <Tooltip label="edit">
+                    <EditIcon />
+                  </Tooltip>
+                </Center>
               </Anchor>
             )}
-
+            <Anchor component="div" onClick={() => downloadPdf(props.info._id)}>
+              <Center>
+                <Tooltip label="download">
+                  <DownloadIcon />
+                </Tooltip>
+              </Center>
+            </Anchor>
           </Group>
         </Grid.Col>
       </Grid>
