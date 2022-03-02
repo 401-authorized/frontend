@@ -4,7 +4,7 @@ import TechLady from "../Assets/SVG/TechLady";
 import SignInForm from "./SignInForm";
 import WelcomeFont from "../UI/WelcomeFont";
 
-const SignInLayout = () => {
+const SignInLayout = ({ admin }) => {
   const matches = useMediaQuery("(min-width:993px)");
   return (
     <Container style={{ height: "calc(100vh - 80px)", minHeight: "500px" }}>
@@ -21,8 +21,10 @@ const SignInLayout = () => {
             padding: "40px",
           }}
         >
-          <WelcomeFont>Welcome to Career Development Portal</WelcomeFont>
-          <SignInForm />
+          <WelcomeFont>
+            {admin ? "Admin Login" : "Welcome to Career Development Portal"}
+          </WelcomeFont>
+          <SignInForm admin={admin} />
         </Grid.Col>
         <Grid.Col
           md={6}

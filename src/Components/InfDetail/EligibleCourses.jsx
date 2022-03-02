@@ -29,17 +29,19 @@ function EligibleCourses({ InfDemoData }) {
           gridColumnGap: "15px",
         }}
       >
-        {courseItems.map((course, idx) => {
-          return (
-            <>
-              <EligibleCoursesItems
-                key={idx}
-                name={course.name}
-                value={course.value}
-              />
-            </>
-          );
-        })}
+        {courseItems
+          .filter((course) => course.value.length > 0)
+          .map((course, idx) => {
+            return (
+              <>
+                <EligibleCoursesItems
+                  key={idx}
+                  name={course.name}
+                  value={course.value}
+                />
+              </>
+            );
+          })}
       </div>
       <Space h="xl" />
       <Space h="xl" />
