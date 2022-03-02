@@ -9,15 +9,22 @@ const JobDetails = ({ form, fieldBlurHandler }) => {
         placeholder="Software Developer"
         label="Designation"
         {...form.getInputProps("designation")}
-        style={{width:"80%"}}
+        style={{ width: "80%" }}
         onBlur={(event) => fieldBlurHandler(event, "designation")}
       />
       <TextInput
         placeholder="Hyderabad"
         label="Place of Posting"
         {...form.getInputProps("placeOfPosting")}
-        style={{width:"80%"}}
+        style={{ width: "80%" }}
         onBlur={(event) => fieldBlurHandler(event, "placeOfPosting")}
+      />
+      <TextInput
+        placeholder="2022"
+        label="Graduation Year"
+        {...form.getInputProps("graduationYear")}
+        style={{ width: "80%" }}
+        onBlur={(event) => fieldBlurHandler(event, "graduationYear")}
       />
       <Textarea
         label="Job Description"
@@ -25,7 +32,7 @@ const JobDetails = ({ form, fieldBlurHandler }) => {
         minRows={2}
         maxRows={10}
         {...form.getInputProps("description")}
-        style={{width:"80%"}}
+        style={{ width: "80%" }}
         onBlur={(event) => fieldBlurHandler(event, "description")}
       />
     </Group>
