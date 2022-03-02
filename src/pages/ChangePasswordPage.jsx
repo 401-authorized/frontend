@@ -1,6 +1,6 @@
 import { Space } from "@mantine/core";
 import React from "react";
-import LoggedInHeader from "../Components/Layout/LoggedInHeader";
+import LoggedInHeader from "../Components/Layout/HeaderLayout";
 import ChangePassword from "../Components/Profile/ChangePassword";
 
 function ChangePasswordPage() {

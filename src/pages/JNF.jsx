@@ -1,6 +1,6 @@
 import { Container } from "@mantine/core";
 import JNFLayout from "../Components/Forms/JNF/JNFLayout";
-import LoggedInHeader from "../Components/Layout/LoggedInHeader";
+import LoggedInHeader from "../Components/Layout/HeaderLayout";
 
 const JNF = () => {
   return (

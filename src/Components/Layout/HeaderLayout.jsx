@@ -1,8 +1,16 @@
-import { Button, Container, Header, Title } from "@mantine/core";
+import { Button, Container, Header, Text, Title } from "@mantine/core";
 import React from "react";
+import { useMediaQuery } from '@mantine/hooks';
+import { Link, NavLink, useNavigate } from "react-router-dom";
+import { useAuth } from "../../hooks/useAuth";
 import Logo from "../Assets/SVG/Logo";
+import NotificationMenu from "../Dashboard/NotificationMenu";
+import LinkButton from "./LinkButton";
 
-function HeaderLayout(props) {
+const DashboardHeader = (props) => {
+  const matches = useMediaQuery('(min-width: 576px)');
+  const { auth, adminAuth } = useAuth();
+  const navigate = useNavigate();
   return (
     <Header
       height={70}
@@ -23,16 +31,30 @@ function HeaderLayout(props) {
         {props.mediaQuery ? props.mediaQuery : null}
 
         <Title order={2}>
+          <Link to={adminAuth ? "/admin/dashboard" : "dashboard"}>
+            <Logo />
+          </Link>
           {/* <span style={{ fontFamily: "Montserrat" }}>CDC</span>
-          <span style={{ fontFamily: "mono" }}> Portal</span> */}
-          <Logo />
+            <sp0an style={{ fontFamily: "mono" }}> Portal</span> */}
         </Title>
-        <Button variant="outline" style={{ color: "white" }}>
-          Visit Site
-        </Button>
+        {auth && !adminAuth && (
+          <LinkButton address="/jnf" name="Add JNF" />
+        )}
+        {auth && !adminAuth && (
+          <LinkButton address="/inf" name="Add INF" />
+        )}
+        {adminAuth && (
+          <LinkButton address="/admin/invitationlink" name="Invite" />
+        )}
+        {!auth && !adminAuth && (
+          <Button variant="outline" style={{ color: "white" }}>
+            Visit Site
+          </Button>
+        )}
+        {(auth || adminAuth) && <NotificationMenu />}
       </Container>
     </Header>
   );
-}
+};
 
-export default HeaderLayout;
+export default DashboardHeader;

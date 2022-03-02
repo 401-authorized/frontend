@@ -1,5 +1,5 @@
 import { Space } from "@mantine/core";
-import DashboardHeader from "../Components/Layout/LoggedInHeader";
+import DashboardHeader from "../Components/Layout/HeaderLayout";
 import ProfilePage from "../Components/Profile/ProfilePage";
 
 const Profile = () => {

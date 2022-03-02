@@ -9,7 +9,7 @@ import InfDetailPage from "./pages/InfDetailPage";
 import ProtectedRoute from "./Components/utils/ProtectedRoute";
 import { useAuth } from "./hooks/useAuth";
 import Landing from "./pages/Landing";
-import Invitation from "./pages/Invitation";
+import Invitation from "./pages/admin/Invitation";
 import Profile from "./pages/Profile";
 // import ProtectedAdminRoute from "./Components/utils/ProtectedAdminRoute";
 import AdminLogin from "./pages/admin/login";
@@ -20,6 +20,8 @@ import ProtectedAdminRoute from "./Components/utils/ProtectedAdminRoute";
 import JnfDetailPage from "./pages/JnfDetailPage";
 import AdminJnfDetailPage from "./pages/admin/JNFDetail";
 import ChangePasswordPage from "./pages/ChangePasswordPage";
+import AdminChangePasswordPage from "./pages/admin/ChangePasswordPage";
+// import Landing from "./pages/Landing";
 
 function App() {
   const { tokenChecking } = useAuth();
@@ -27,7 +29,7 @@ function App() {
     <>
       {!tokenChecking ? (
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Landing />} />
           <Route path="/landing" element={<Landing />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/signin" element={<SignIn />} />
@@ -42,6 +44,7 @@ function App() {
             <Route path="/changepassword" element={<ChangePasswordPage />} />
           </Route>
           <Route element={<ProtectedAdminRoute />}>
+            <Route path="/admin/changepassword" element={<AdminChangePasswordPage />} />
             <Route path="/admin/dashboard" element={<AdminDashboard />} />
             <Route path="/admin/invitationlink" element={<Invitation />} />
             <Route path="/admin/INF/:id" element={<AdminInfDetailPage />} />

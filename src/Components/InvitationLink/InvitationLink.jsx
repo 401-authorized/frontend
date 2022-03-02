@@ -32,7 +32,7 @@ const SignInLink = () => {
     },
 
     validationRules: {
-      email: (value) => /^(?!.+@(gmail|google|yahoo|outlook|hotmail|msn)\..+)(.+@.+\..+)$/.test(value),
+      email: (value) => /^(?!.+@(gmail|google|yahoo|outlook|hotmail|msn|rediff|ymail)\..+)(.+@.+\..+)$/.test(value),
     },
 
     errorMessages:{

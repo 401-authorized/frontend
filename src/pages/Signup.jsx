@@ -2,7 +2,7 @@ import { LoadingOverlay } from "@mantine/core";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useLocation, useParams } from "react-router-dom";
-import HeaderLayout from "../Components/Layout/HeaderLayout";
+import DashboardHeader from "../Components/Layout/HeaderLayout";
 import InvitationExpired from "../Components/Signup/InvitationExpired";
 import SIgnupLayout from "../Components/Signup/SignupLayout";
 import { API_URL } from "../config/constants";
@@ -37,7 +37,7 @@ function Signup() {
   }, []);
   return (
     <div className="">
-      <HeaderLayout />
+      <DashboardHeader />
       <div
         style={{
           height: "calc(100vh - 80px)",

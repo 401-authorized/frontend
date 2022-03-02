@@ -1,6 +1,6 @@
 import { Space } from "@mantine/core";
 import React from "react";
-import DashboardHeader from "../../Components/Layout/LoggedInHeader";
+import DashboardHeader from "../../Components/Layout/HeaderLayout";
 import ProfilePage from "../../Components/Profile/ProfilePage";
 
 function AdminProfile() {
