@@ -1,19 +1,26 @@
 import { TextInput, Textarea, Group, RadioGroup, Radio } from "@mantine/core";
 import WelcomeFont from "../../UI/WelcomeFont";
 
-const InternProfile = () => {
+const InternProfile = ({ form }) => {
   return (
     <Group direction="column" align="center" position="center">
       <WelcomeFont>Intern Profile</WelcomeFont>
-      <TextInput label="Job Designation" required style={{ width: "80%" }} />
+      <TextInput
+        label="Job Designation"
+        {...form.getInputProps("designation")}
+        required
+        style={{ width: "80%" }}
+      />
       <Textarea
+        {...form.getInputProps("description")}
         label="Job Description"
         minRows="5"
         maxRows="10"
         required
-        style={{ width: "80%"}}
+        style={{ width: "80%" }}
       />
       <RadioGroup
+        {...form.getInputProps("mode")}
         label="Mode of Internship"
         required
         style={{
@@ -28,7 +35,8 @@ const InternProfile = () => {
       </RadioGroup>
       <TextInput
         label="Place of Posting (If Physical)"
-        style={{ width: "80%"}}
+        style={{ width: "80%" }}
+        {...form.getInputProps("placeOfPosting")}
       />
     </Group>
   );
