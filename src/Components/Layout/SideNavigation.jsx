@@ -23,7 +23,6 @@ function SideNavigation() {
       <Drawer
         opened={opened}
         onClose={() => setOpened(false)}
-        title="Register"
         padding="xl"
         size="md"
       >
