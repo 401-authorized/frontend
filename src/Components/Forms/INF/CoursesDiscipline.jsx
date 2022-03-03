@@ -1,9 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {
-  Accordion,
-  useAccordionState,
-  Space,
-} from "@mantine/core";
+import { Accordion, useAccordionState, Space } from "@mantine/core";
 import { coursesAvailable } from "./CoursesAvailable";
 import WelcomeFont from "../../UI/WelcomeFont";
 import CoursesChips from "../CoursesChips";
@@ -23,6 +19,8 @@ function CoursesDiscipline({ form }) {
   const [skillBasedStudents, setSkillBasedStudents] = useState(
     form.values.skillBasedStudents
   );
+
+  console.log("main", btechStudents);
 
   useEffect(() => {
     // form.setValues((btechStudents) => ([ ...btechStudents ]));
@@ -54,8 +52,10 @@ function CoursesDiscipline({ form }) {
       <Accordion state={state} onChange={handlers.setState} disableIconRotation>
         <Accordion.Item label="4-Year B.Tech Programmes">
           <CoursesChips
-            value={btechStudents}
-            setValue={setBtechStudents}
+            // value={btechStudents}
+            // setValue={setBtechStudents}
+            {...form.getInputProps("btechStudents")}
+            setValue={form.getInputProps("btechStudents").onChange}
             courses={coursesAvailable.btechStudents}
           />
         </Accordion.Item>
