@@ -7,8 +7,12 @@ import InternshipDuration from "./InternshipDuration";
 import InfDetailItemsList from "./InfDetailItemsList";
 import EligibleCourses from "./EligibleCourses";
 import SelectionProcedure from "./SelectionProcedure";
+import UploadedDocList from "./UploadedDocList";
 
 function InfLayout({ inf }) {
+  console.log("this");
+  console.log(inf);
+  console.log("this");
   return (
     <Grid>
       <Grid.Col>
@@ -91,6 +95,7 @@ function InfLayout({ inf }) {
           <InfDetailItemsList infDemoData={inf} />
           <EligibleCourses InfDemoData={inf} />
           <SelectionProcedure InfDemoData={inf} />
+          <UploadedDocList documents={inf.documents} />
           <Space h="xl" />
           <Space h="xl" />
           <Group direction="row">

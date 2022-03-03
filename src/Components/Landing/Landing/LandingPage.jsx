@@ -21,7 +21,7 @@ const HomePage = (props) => {
           backgroundRepeat: "no-repeat",
           backgroundBlendMode: "overlay",
           zIndex: "-100",
-          // minHeight:"100vh",
+          minHeight:"100vh",
           minWidth: "100vh",
         }}
       ></div>
