@@ -65,7 +65,7 @@ const JNFForm = ({ currentStep, nextStep, prevStep, active, jnf, id }) => {
         if (values[key] instanceof Array) {
           values[key].forEach((file) => {
             newForm.append(key, file);
-          });
+          }) ;
         } else {
           newForm.append(key, values[key]);
         }
