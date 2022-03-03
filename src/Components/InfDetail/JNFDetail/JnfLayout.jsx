@@ -5,8 +5,12 @@ import "../../../style/infDetail/infDetail.style.css";
 import JnfDetailItemsList from "./JnfDetailItemsList";
 import EligibleCourses from "./EligibleCourses";
 import SelectionProcedure from "./SelectionProcedure";
+import UploadedDocList from "../UploadedDocList";
 
 function InfLayout({ jnf }) {
+  console.log("this");
+  console.log(jnf);
+  console.log("this");
   return (
     <Grid>
       <Grid.Col>
@@ -89,6 +93,7 @@ function InfLayout({ jnf }) {
           <JnfDetailItemsList JnfDemoData={jnf} />
           <EligibleCourses JnfDemoData={jnf} />
           <SelectionProcedure JnfDemoData={jnf} />
+          <UploadedDocList documents={jnf.documents} />
           <Space h="xl" />
         </Paper>
         <Space h="xl" />

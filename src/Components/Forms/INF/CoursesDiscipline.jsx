@@ -25,6 +25,7 @@ function CoursesDiscipline({ form }) {
   );
 
   useEffect(() => {
+    // form.setValues((btechStudents) => ([ ...btechStudents ]));
     form.setFieldValue("btechStudents", btechStudents);
   }, [btechStudents]);
   useEffect(() => {

@@ -8,10 +8,8 @@ import INF from "./pages/INF";
 import InfDetailPage from "./pages/InfDetailPage";
 import ProtectedRoute from "./Components/utils/ProtectedRoute";
 import { useAuth } from "./hooks/useAuth";
-import Landing from "./pages/Landing";
 import Invitation from "./pages/admin/Invitation";
 import Profile from "./pages/Profile";
-// import ProtectedAdminRoute from "./Components/utils/ProtectedAdminRoute";
 import AdminLogin from "./pages/admin/login";
 import AdminDashboard from "./pages/admin/Dashboard";
 import AdminInfDetailPage from "./pages/admin/INFDetail";
@@ -22,7 +20,8 @@ import AdminJnfDetailPage from "./pages/admin/JNFDetail";
 import PageNotFound from "./pages/404-page";
 import ChangePasswordPage from "./pages/ChangePasswordPage";
 import AdminChangePasswordPage from "./pages/admin/ChangePasswordPage";
-// import Landing from "./pages/Landing";
+import SideNavigation from "./Components/Layout/SideNavigation";
+import Landing from "./pages/Landing";
 
 function App() {
   const { tokenChecking } = useAuth();
@@ -35,20 +34,20 @@ function App() {
           <Route path="/signup" element={<Signup />} />
           <Route path="/signin" element={<SignIn />} />
           <Route path="/admin/signin" element={<AdminLogin />} />
+          <Route path="/check" element={<SideNavigation />} />
           <Route element={<ProtectedRoute />}>
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/JNF" element={<JNF />} />
             <Route path="/JNF/:id" element={<JnfDetailPage />} />
             <Route path="/INF/:id" element={<InfDetailPage />} />
             <Route path="/INF" element={<INF />} />
-            <Route path="/admin/invitationlink" element={<Invitation />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/changepassword" element={<ChangePasswordPage />} />
           </Route>
           <Route element={<ProtectedAdminRoute />}>
             <Route path="/admin/changepassword" element={<AdminChangePasswordPage />} />
             <Route path="/admin/dashboard" element={<AdminDashboard />} />
-            <Route path="/admin/invitation" element={<Invitation />} />
+            <Route path="/admin/invitationlink" element={<Invitation />} />
             <Route path="/admin/INF/:id" element={<AdminInfDetailPage />} />
             <Route path="/admin/profile" element={<AdminProfile />} />
             <Route path="/admin/JNF/:id" element={<AdminJnfDetailPage />} />
