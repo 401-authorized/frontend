@@ -62,7 +62,7 @@ const JNFForm = ({ currentStep, nextStep, prevStep, active, jnf, id }) => {
       const newForm = new FormData();
       for (let key in values) {
         console.log(key, values[key]);
-        if (key === "documents") {
+        if (values[key] instanceof Array) {
           values[key].forEach((file) => {
             newForm.append(key, file);
           });
