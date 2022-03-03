@@ -35,7 +35,7 @@ const INFForm = ({ currentStep, nextStep, active, prevStep, inf, id }) => {
       mbaStudents: inf?.mbaStudents ? inf.mbaStudents : [],
       shortlistFromResumes: inf?.shortlistFromResumes
         ? inf.shortlistFromResumes
-        : true,
+        : false,
       eligibilityCriteria: inf?.eligibilityCriteria
         ? inf.eligibilityCriteria
         : "",
@@ -44,7 +44,7 @@ const INFForm = ({ currentStep, nextStep, active, prevStep, inf, id }) => {
       totalRounds: inf?.totalRounds ? inf.totalRounds : "",
       numberOfOffers: inf?.numberOfOffers ? inf.numberOfOffers : "",
       stipend: inf?.stipend ? inf.stipend : "", // added
-      provisionForPPO: inf?.provisionForPPO ? inf.provisionForPPO : true, // added
+      provisionForPPO: inf?.provisionForPPO ? inf.provisionForPPO : false, // added
       ctcDetails: inf?.ctcDetails ? inf.ctcDetails : "", // added
       graduationYear: inf?.graduationYear ? inf.graduationYear : "",
       documents: inf?.documents ? inf.documents : [],
@@ -87,7 +87,7 @@ const INFForm = ({ currentStep, nextStep, active, prevStep, inf, id }) => {
     })
       .then((res) => {
         console.log(res);
-        toast.success("JNF Form Submitted Successfully");
+        toast.success("INF Form Submitted Successfully");
         navigate("/dashboard");
       })
       .catch((err) => {
