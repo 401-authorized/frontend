@@ -15,7 +15,7 @@ function NavigationLink() {
           <LinkButton address="/admin/invitationlink" name="Invite" />
         )}
       </Group>
-      {(auth || adminAuth) && <NotificationMenu />}
+      
     </>
   );
 }

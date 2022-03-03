@@ -8,6 +8,7 @@ import LinkButton from "./LinkButton";
 import NavigationLink from "./NavigationLink";
 import SideHeader from "./SideHeader";
 import SideNavigation from "./SideNavigation";
+import NotificationMenu from "../Dashboard/NotificationMenu";
 
 const DashboardHeader = (props) => {
   const matches = useMediaQuery("(min-width: 576px)");
@@ -32,7 +33,7 @@ const DashboardHeader = (props) => {
         }}
       >
         {props.mediaQuery ? props.mediaQuery : null}
-        {/* { matches ? <SideNavigation /> : null} */}
+        {!matches ? <SideNavigation /> : null}
         {/* {matches ? null : <SideHeader />} */}
         <Title order={2}>
           <Link to={adminAuth ? "/admin/dashboard" : "/dashboard"}>
@@ -41,7 +42,8 @@ const DashboardHeader = (props) => {
           {/* <span style={{ fontFamily: "Montserrat" }}>CDC</span>
             <sp0an style={{ fontFamily: "mono" }}> Portal</span> */}
         </Title>
-        { matches ? <NavigationLink /> : null}
+        {matches ? <NavigationLink /> : null}
+        {(auth || adminAuth) && <NotificationMenu />}
       </Container>
     </Header>
   );
